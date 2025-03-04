@@ -10,7 +10,14 @@ export default function Card({
 }) {
     return (
         <div className={cardClass}>
-            {image && <img className={imageClass} src={image} alt={title} />}
+            {image && (
+                <img
+                    className={imageClass}
+                    src={image}
+                    alt={title}
+                    loading="lazy"
+                />
+            )}
             <div className={contentClass}>
                 <h2 className={cardTitle}>{title}</h2>
                 <p className={cardText}>{description}</p>

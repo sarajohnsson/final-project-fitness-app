@@ -1,25 +1,32 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios';
 
-function UseFetch(url, apiKey) {
+function UseFetch(url) {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        setLoading(true);
-        axios
-            .get(url, { headers: { Authorization: `Client-ID ${apiKey}` } })
+        fetch(url)
             .then((response) => {
-                setData(response.data);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then((jsonData) => {
+                console.log('Fetched Data:', jsonData);
+                setData(jsonData);
             })
             .catch((err) => {
+                console.error('Fetch Error:', err);
                 setError(err);
             })
             .finally(() => {
                 setLoading(false);
             });
-    }, [url, apiKey]);
+    }, [url]);
 
     return { data, loading, error };
 }
+
+export default UseFetch;
