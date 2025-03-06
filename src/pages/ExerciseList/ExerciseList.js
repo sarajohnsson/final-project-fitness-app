@@ -9,6 +9,7 @@ import Modal, { useModal } from '../../components/ui/Modal';
 export default function ExerciseList() {
     const url = '/data/exercises.json';
     const [limit, setLimit] = useState(10);
+    const [searchInput, setSearchInput] = useState('');
     const { isOpen, content, openModal, closeModal } = useModal();
 
     const { data, loading, error } = UseFetch(url);
@@ -22,25 +23,29 @@ export default function ExerciseList() {
         return (
             <div>
                 <p>Error: {error.message}</p>
-                {error.response?.status === 403 && (
-                    <p>Access forbidden. Please check your API key.</p>
-                )}
-                {error.response?.status === 404 && (
-                    <p>Resource not found. Please check the API endpoint.</p>
-                )}
             </div>
         );
     }
+
+    const filteredExerises = data.filter((exercise) =>
+        exercise.name.toLowerCase().includes(searchInput.toLocaleLowerCase())
+    );
 
     return (
         <div className="exercise-wrapper">
             <h1 className="title">Exercise List</h1>
             <div>
-                <Input />
+                <Input
+                    type="text"
+                    className="search-exercise-input"
+                    placeholder="Search exercise"
+                    value={searchInput}
+                    onChangeFunction={setSearchInput}
+                />
             </div>
             {loading && <p>Loading...</p>}
             <div className="exercise-container">
-                {data.slice(0, limit).map((exercise) => (
+                {filteredExerises.slice(0, limit).map((exercise) => (
                     <Card
                         cardClass="exercise-card"
                         key={exercise.id}
