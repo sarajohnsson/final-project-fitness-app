@@ -1,15 +1,15 @@
 @import '../../sassStyles/global.scss';
 
 .modal {
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
+    position: fixed;
+    z-index: 1;
     left: 0;
     top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0, 0, 0); /* Fallback color */
-    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
 }
 
 .modal-content {
@@ -20,7 +20,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: $light;
+    background-color: $primary-white;
     padding: 10px 20px;
     max-width: 450px;
     border-radius: 15px;
@@ -39,18 +39,18 @@
         align-items: center;
         padding: 5px;
         border-radius: 5px;
-        color: $color-bg;
+        color: $secondary;
 
         &:hover {
             transition: all 0.3s ease;
-            color: $primary;
+            color: $brand-orange;
         }
     }
 }
 
 .modal-image {
     border-radius: 15px;
-    box-shadow: 0 0 16px rgba($color: $secondary, $alpha: 0.5);
+    box-shadow: 0 0 16px rgba($color: $primary-black, $alpha: 0.5);
 }
 
 .modal-title {

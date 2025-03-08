@@ -2,10 +2,26 @@ import { NavLink } from 'react-router-dom';
 import Button from './ui/Button';
 import logo from '../assets/gym-logo.png';
 import './Navbar.scss';
+import { useEffect, useState } from 'react';
 
 export default function Navbar() {
+    const [scrolled, setScrolled] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.scrollY > 50) {
+                setScrolled(true);
+            } else {
+                setScrolled(false);
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
     return (
-        <div className="nav-wrapper">
+        <div className={`nav-wrapper ${scrolled ? 'scrolled' : ''}`}>
             <nav className="navigation">
                 <div className="logo">
                     <NavLink to="/">
@@ -33,11 +49,9 @@ export default function Navbar() {
                     </li>
                 </ul>
 
-                <Button
-                    className="nav-btn"
-                    title="Join now"
-                    onClick={() => console.log('Button clicked')}
-                />
+                <NavLink className="nav-btn" to="/">
+                    Join here
+                </NavLink>
             </nav>
         </div>
     );

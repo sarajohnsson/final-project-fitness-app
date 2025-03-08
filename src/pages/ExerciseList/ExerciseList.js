@@ -33,7 +33,6 @@ export default function ExerciseList() {
 
     return (
         <div className="exercise-wrapper">
-            <h1 className="title">Exercise List</h1>
             <div>
                 <Input
                     type="text"

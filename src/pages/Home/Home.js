@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom';
 import Button from '../../components/ui/Button';
 import Card from '../../components/ui/Card';
 import './Home.scss';
@@ -9,7 +10,7 @@ import cardImg3 from '../../assets/images/hero-card-3.jpg';
 export default function Home() {
     return (
         <section className="hero-section">
-            <div className="container">
+            <div className="hero-container">
                 <article className="hero-info">
                     <h1 className="hero-title">
                         Transform
@@ -23,14 +24,10 @@ export default function Home() {
                         anywhere. Start today and build the best version of
                         yourself!
                     </p>
-                    <Button className="hero-btn" title="Get fit now" />
+                    <NavLink className="hero-btn" to="/">
+                        Get fit now
+                    </NavLink>
                 </article>
-                <img
-                    className="hero-img"
-                    src={Background}
-                    alt="Hero"
-                    loading="lazy"
-                />
             </div>
             <div className="banner">
                 <Card />
