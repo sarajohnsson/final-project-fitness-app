@@ -1,5 +1,4 @@
 import { NavLink } from 'react-router-dom';
-import Button from './ui/Button';
 import logo from '../assets/gym-logo.png';
 import './Navbar.scss';
 import { useEffect, useState } from 'react';

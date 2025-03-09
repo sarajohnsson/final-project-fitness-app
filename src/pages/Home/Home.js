@@ -1,8 +1,6 @@
 import { NavLink } from 'react-router-dom';
-import Button from '../../components/ui/Button';
 import Card from '../../components/ui/Card';
 import './Home.scss';
-import Background from '../../assets/images/hero-img.jpg';
 import cardImg1 from '../../assets/images/hero-card-1.jpg';
 import cardImg2 from '../../assets/images/hero-card-2.jpg';
 import cardImg3 from '../../assets/images/hero-card-3.jpg';

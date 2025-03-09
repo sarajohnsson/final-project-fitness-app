@@ -6,6 +6,7 @@ export default function Input({
     className,
     value,
     onChangeFunction,
+    name,
 }) {
     const [localValue, setLocalValue] = useState('');
 
@@ -24,6 +25,7 @@ export default function Input({
                 className={`form-control ${className}`}
                 placeholder={placeholder}
                 value={value}
+                name={name}
             />
         </div>
     );
