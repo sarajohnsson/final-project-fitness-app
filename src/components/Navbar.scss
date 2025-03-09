@@ -5,11 +5,11 @@
     position: fixed;
     top: 0;
     left: 0;
-    background: rgba($color: $secondary, $alpha: 1);
+    background: linear-gradient(90deg, $primary-black, $secondary-light);
     z-index: 100;
 
     &.scrolled {
-        background: rgba($color: $secondary, $alpha: 0.5);
+        background: rgba($color: $secondary-light, $alpha: 0.1);
         backdrop-filter: blur(10px);
     }
 }
@@ -17,7 +17,7 @@
 .navigation {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 20px 0;
+    padding: 10px 0;
 
     display: flex;
     justify-content: center;
@@ -25,7 +25,8 @@
 }
 
 .logo-img {
-    max-width: 120px;
+    width: 100%;
+    max-height: 60px;
 }
 
 .nav-list {

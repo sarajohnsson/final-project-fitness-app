@@ -49,7 +49,7 @@ export default function Navbar() {
                     </li>
                 </ul>
 
-                <NavLink className="nav-btn" to="/">
+                <NavLink className="nav-btn" to="/loginpage">
                     Join here
                 </NavLink>
             </nav>
