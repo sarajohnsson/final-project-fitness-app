@@ -1,21 +1,43 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Button from '../../components/ui/Button';
 import Input from '../../components/ui/Input';
 import './LoginPage.scss';
-
 import { auth } from '../../firebase/config.js';
 import {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
+    onAuthStateChanged,
 } from 'firebase/auth';
+import { useDispatch } from 'react-redux';
+import { setUser } from '../../store/usersSlice.js';
+import { useNavigate } from 'react-router-dom';
 
 export default function LoginPage() {
+    const dispatch = useDispatch();
     const [activeButton, setActiveButton] = useState(null);
     const [loginType, setLoginType] = useState('login');
     const [userCredentials, setUserCredentials] = useState({
         email: '',
         password: '',
     });
+    const [error, setError] = useState('');
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+            if (user) {
+                dispatch(
+                    setUser({
+                        id: user.uid,
+                        email: user.email,
+                    })
+                );
+            } else {
+                dispatch(setUser(null));
+            }
+        });
+        return () => unsubscribe();
+    }, [dispatch]);
 
     function toggleButton(buttonName) {
         if (activeButton !== buttonName) {
@@ -38,47 +60,43 @@ export default function LoginPage() {
             ...prev,
             [name]: value,
         }));
-        console.log(userCredentials);
     }
 
     function handleSignup(e) {
         e.preventDefault();
+        setError('');
         createUserWithEmailAndPassword(
             auth,
             userCredentials.email,
             userCredentials.password
         )
             .then((userCredential) => {
-                // Signed up
-                const user = userCredential.user;
-                console.log(user);
+                // Navigate to homepage upon signup
+                if (true) {
+                    navigate('/');
+                }
             })
             .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                console.log(errorCode);
-                console.log(errorMessage);
+                setError(error.message);
             });
     }
 
     function handleLogin(e) {
         e.preventDefault();
+        setError('');
         signInWithEmailAndPassword(
             auth,
             userCredentials.email,
             userCredentials.password
         )
             .then((userCredential) => {
-                // Signed in
-                const user = userCredential.user;
-                console.log(user);
-                // ...
+                // Navigate to homepage upon login
+                if (true) {
+                    navigate('/');
+                }
             })
             .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                console.log(errorCode);
-                console.log(errorMessage);
+                setError(error.message);
             });
     }
 
@@ -118,14 +136,12 @@ export default function LoginPage() {
                             placeholder="Enter your email"
                             value={userCredentials.email}
                         />
-                    </div>
-                    <div className="form-control">
                         <label className="form-label">Password*</label>
                         <Input
                             onChangeFunction={(value) =>
                                 handleCredentials('password', value)
                             }
-                            className="login-credentials"
+                            className="signup-credentials"
                             name="password"
                             type="password"
                             placeholder="Enter your password"
@@ -150,6 +166,8 @@ export default function LoginPage() {
                             Sign Up
                         </button>
                     )}
+
+                    {error && <div className="error">{error}</div>}
                 </form>
             </section>
         </div>

@@ -22,26 +22,38 @@
 }
 
 .login-type {
-    margin-bottom: 40px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 40px;
     gap: 40px;
 }
 
 .login-btn {
+    background-color: $secondary-btn-default;
     color: $primary-white;
-    background-color: $primary-black;
     width: 100%;
     border-radius: 50px;
     font-size: 24px;
     font-weight: 600;
     padding: 10px 15px;
+    transition: all 0.3s ease-in-out;
+
+    &:hover,
+    &:focus {
+        background-color: $secondary-btn-hover;
+        color: $primary-black;
+    }
+
+    &:active {
+        background-color: $secondary-btn-pressed;
+        color: $primary-white;
+    }
 }
 
 .login-btn.active {
+    background-color: $secondary-btn-hover;
     color: $primary-black;
-    background-color: $primary-white;
     border-radius: 50px;
     width: 100%;
     font-size: 24px;
@@ -51,28 +63,55 @@
 
 .submit-btn {
     color: $primary-white;
-    background: linear-gradient(90deg, #e8590c, #ffa94d);
+    @include linear-gradient($direction, $big-btn-default);
     border-radius: 50px;
     width: 100%;
     font-size: 24px;
     font-weight: 600;
     padding: 10px 15px;
+    margin-bottom: 10px;
+
+    &:hover,
+    &:focus {
+        @include linear-gradient($direction, $big-btn-hover);
+    }
+
+    &:active {
+        @include linear-gradient($direction, $big-btn-pressed);
+    }
 }
 
 .form-control {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
     width: 100%;
     font-size: 24px;
     border-radius: 50px;
     border: none;
     text-align: left;
-    margin-bottom: 40px;
 }
 
 .form-label {
     color: $primary-white;
 }
 
-.login-credentials {
+.login-credentials,
+.signup-credentials {
     margin-top: 10px;
     padding: 20px;
+}
+
+.login-credentials {
+    margin-bottom: 20px;
+}
+
+.signup-credentials {
+    margin-bottom: 40px;
+}
+
+.error {
+    color: #e03131;
+    font-size: 1rem;
 }

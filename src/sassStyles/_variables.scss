@@ -1,0 +1,25 @@
+@mixin linear-gradient($direction, $colors) {
+    background: linear-gradient($direction, nth($colors, 1), nth($colors, 2));
+}
+
+$brand-orange: #fa6f19;
+$primary-black: #000000;
+$primary-white: #ffffff;
+$secondary-dark: #22232a;
+$secondary-light: #2d2d34;
+
+$primary-btn-default: #fa6f19;
+$primary-btn-hover: #ffa94d;
+$primary-btn-pressed: #e8590c;
+$primary-btn-disabled: rgba(#ffe8cc, 0.5);
+
+$direction: to right;
+$big-btn-default: (#e8590c, #ffa94d);
+$big-btn-hover: (#ffa94d, #ffe8cc);
+$big-btn-pressed: (#94420f, #fa6f19);
+$big-btn-disabled: (#ffe8cc, #ffffff);
+
+$secondary-btn-default: #000000;
+$secondary-btn-hover: #ffffff;
+$secondary-btn-pressed: #343a40;
+$secondary-btn-disabled: rgba(#dee2e6, 0.5);

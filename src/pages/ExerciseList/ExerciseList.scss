@@ -1,7 +1,7 @@
 @import '../../sassStyles/global.scss';
 
 body {
-    background-color: $secondary;
+    background-color: $secondary-dark;
 }
 
 .exercise-wrapper {
@@ -111,8 +111,7 @@ body {
 }
 
 .exercise-btn {
-    background-color: $brand-orange;
-    border: 1px solid $brand-orange;
+    background-color: $primary-btn-default;
     font-size: 1rem;
     font-weight: 600;
     line-height: 1;
@@ -122,19 +121,16 @@ body {
     &:hover,
     &:focus {
         transition: all 0.3s ease-in-out;
-        background-color: $hover-focus;
-        border: 1px solid $hover-focus;
+        background-color: $primary-btn-hover;
     }
 
     &:active {
-        background-color: $pressed;
-        border: 1px solid $pressed;
+        background-color: $primary-btn-pressed;
     }
 }
 
 .load-exercise-btn {
-    background-color: $brand-orange;
-    border: 1px solid $brand-orange;
+    background-color: $primary-btn-default;
     color: $primary-white;
     font-size: 1.5rem;
     font-weight: 700;
@@ -146,12 +142,10 @@ body {
 
     &:hover,
     &:focus {
-        background-color: $hover-focus;
-        border: 1px solid $hover-focus;
+        background-color: $primary-btn-hover;
     }
 
     &:active {
-        background-color: $pressed;
-        border: 1px solid $pressed;
+        background-color: $primary-btn-pressed;
     }
 }

@@ -43,11 +43,12 @@
     gap: 30px;
 }
 
-.nav-btn {
+.nav-btn,
+.logout-btn {
     display: flex;
     justify-content: center;
     align-self: center;
-    background-color: $brand-orange;
+    background-color: $primary-btn-default;
     color: $primary-white;
     text-transform: capitalize;
     font-size: 1rem;
@@ -56,4 +57,14 @@
     padding: 10px;
     border-radius: 50px;
     white-space: nowrap;
+    transition: all 0.3s ease-in-out;
+
+    &:hover,
+    &:focus {
+        background-color: $primary-btn-hover;
+    }
+
+    &:active {
+        background-color: $primary-btn-pressed;
+    }
 }

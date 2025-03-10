@@ -51,12 +51,21 @@
 
 .hero-btn {
     color: $primary-white;
-    background: linear-gradient(90deg, #e8590c, #ffa94d);
+    @include linear-gradient($direction, $big-btn-default);
     text-transform: uppercase;
     border-radius: 50px;
     font-size: 24px;
     font-weight: 700;
     padding: 15px 20px;
+
+    &:hover,
+    &:focus {
+        @include linear-gradient($direction, $big-btn-hover);
+    }
+
+    &:active {
+        @include linear-gradient($direction, $big-btn-pressed);
+    }
 }
 
 .hero-img {
