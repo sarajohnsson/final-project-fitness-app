@@ -124,7 +124,7 @@ export default function LoginPage() {
                     />
                 </div>
                 <form className="add-form login">
-                    <div className="form-control">
+                    <div className="login-form-control">
                         <label className="form-label">Email*</label>
                         <Input
                             onChangeFunction={(value) =>

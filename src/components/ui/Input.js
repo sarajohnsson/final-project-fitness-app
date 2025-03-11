@@ -18,15 +18,13 @@ export default function Input({
     }
 
     return (
-        <div>
-            <input
-                onChange={changeHandler}
-                type={type}
-                className={`form-control ${className}`}
-                placeholder={placeholder}
-                value={value}
-                name={name}
-            />
-        </div>
+        <input
+            onChange={changeHandler}
+            type={type}
+            className={`form-control ${className}`}
+            placeholder={placeholder}
+            value={value}
+            name={name}
+        />
     );
 }

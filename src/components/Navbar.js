@@ -8,6 +8,9 @@ import './Navbar.scss';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { selectUsers } from '../store/usersSlice';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons/faArrowRightFromBracket';
+import { faFireFlameCurved } from '@fortawesome/free-solid-svg-icons/faFireFlameCurved';
 
 export default function Navbar() {
     const dispatch = useDispatch();
@@ -75,11 +78,19 @@ export default function Navbar() {
                         onClick={handleSignout}
                         className="logout-btn"
                         to="home">
-                        Logout
+                        <span className="action">Logout</span>
+                        <FontAwesomeIcon
+                            className="logout-icon"
+                            icon={faArrowRightFromBracket}
+                        />
                     </button>
                 ) : (
                     <Link className="nav-btn" to="/loginpage">
-                        Join here
+                        <span className="action">Join here</span>
+                        <FontAwesomeIcon
+                            className="join-icon"
+                            icon={faFireFlameCurved}
+                        />
                     </Link>
                 )}
             </nav>
