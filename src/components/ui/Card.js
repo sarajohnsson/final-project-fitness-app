@@ -7,8 +7,8 @@ export default function Card({
     contentClass = 'p-4',
     cardClass = 'bg-white shadow-lg rounded-lg overflow-hidden',
     overlayClass = 'absolute inset-0 bg-black bg-opacity-50',
-    cardTitle = 'text-xl font-semibold',
-    cardText = 'text-gray-600 mt-2',
+    cardTitleClass = 'text-xl font-semibold',
+    cardTextClass = 'text-gray-600 mt-2',
     cardBtnClass,
     buttonText,
     onButtonClick,
@@ -35,8 +35,8 @@ export default function Card({
             )}
 
             <div className={contentClass}>
-                <h2 className={cardTitle}>{title}</h2>
-                <p className={cardText}>{description}</p>
+                <h2 className={cardTitleClass}>{title}</h2>
+                <p className={cardTextClass}>{description}</p>
                 {children}
                 {buttonText && (
                     <button className={cardBtnClass} onClick={onButtonClick}>

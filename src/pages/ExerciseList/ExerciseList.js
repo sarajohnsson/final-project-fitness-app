@@ -91,8 +91,8 @@ export default function ExerciseList() {
                             useBackgroundImage={true}
                             overlayClass="card-gradient"
                             contentClass="exercise-content"
-                            cardTitle="exercise-title"
-                            cardText="exercise-desc"
+                            cardTitleClass="exercise-title"
+                            cardTextClass="exercise-desc"
                             cardBtnClass="exercise-btn"
                             buttonText="More info"
                             onButtonClick={() => handleButtonClick(exercise)}>

@@ -14,6 +14,7 @@ import {
 export default function WorkoutsPage() {
     const [workouts, setWorkouts] = useState([]);
 
+    // Getting data from Firebase
     const getAllWorkouts = async () => {
         const querySnapshot = await getDocs(collection(db, 'workouts'));
         const workoutSnap = querySnapshot.docs.map((workoutProp) => ({
@@ -61,6 +62,7 @@ export default function WorkoutsPage() {
                             </div>
                         </div>
                         <div className="custom-exercise-container">
+                            {/* Adding new exercise modal */}
                             <ExerciseModal
                                 className="add-exercise add-btn success lg"
                                 title="Add Exercise">

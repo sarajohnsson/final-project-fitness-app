@@ -1,5 +1,7 @@
 @import '../../sassStyles/global.scss';
 
+// --- HERO SECTION ---
+
 .hero-section {
     background-color: $primary-black;
     width: 100%;
@@ -71,4 +73,74 @@
 .hero-img {
     width: 100%;
     max-width: 530px;
+}
+
+// --- BANNER SECTION ---
+
+.banner {
+    min-height: 50vh;
+    background-color: $brand-orange;
+}
+
+.banner-card {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+
+    height: 480px;
+    width: 100%;
+
+    min-width: 50%;
+
+    flex-grow: 1;
+    border-radius: 15px;
+    box-shadow: inset 0 0 0.5px 1px hsla(0, 0%, 100%, 0.5);
+}
+
+.banner-gradient {
+    position: absolute;
+    inset: 0;
+    background: rgb(0, 0, 0);
+    background: linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 1) 25%,
+        rgba(0, 0, 0, 0) 100%
+    );
+}
+
+.subsection {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background: rgb(0, 0, 0);
+    background: linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 1) 25%,
+        rgba(0, 0, 0, 0) 100%
+    );
+
+    .subsection-overlay {
+        position: absolute;
+        inset: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .subsection-container {
+        margin: 0 auto;
+        max-width: 1200px;
+        text-align: center; // Center the text
+    }
+
+    .subsection-desc {
+        font-size: 64px;
+        font-weight: 700;
+        color: $primary-white;
+        text-transform: uppercase;
+    }
 }
