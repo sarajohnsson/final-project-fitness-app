@@ -1,0 +1,160 @@
+@import '../../sassStyles/global';
+
+.workout-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-top: 120px;
+
+    .add-workout {
+        margin-bottom: 40px;
+    }
+}
+
+.workout-container {
+    background-color: $secondary-light;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.session-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+
+    .workout-title {
+        color: $primary-white;
+        font-size: 2rem;
+        font-weight: 700;
+    }
+
+    .session-box {
+        display: flex;
+        gap: 20px;
+    }
+}
+
+.custom-exercise-container {
+    border-radius: 10px;
+    width: 100%;
+    padding: 20px;
+
+    .add-exercise {
+        margin-bottom: 20px;
+    }
+
+    .custom-exercise-box {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 20px;
+
+        .custom-exercise-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 24px;
+            font-weight: 600;
+            color: $primary-white;
+        }
+    }
+}
+
+.exercise-table-header {
+    margin-bottom: 20px;
+
+    ul {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        gap: 20px;
+    }
+
+    li {
+        display: flex;
+        width: 100%;
+        font-family: 'Poppins', sans-serif;
+        font-size: 2rem;
+        font-weight: 500;
+        color: $primary-white;
+    }
+}
+
+.exercise-table-body {
+    ul {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        gap: 20px;
+    }
+
+    li {
+        background-color: $primary-white;
+        display: flex;
+        width: 100%;
+        font-size: 24px;
+        color: $primary-black;
+        padding: 10px;
+        border-radius: 10px;
+    }
+}
+
+// --- BUTTONS ---
+
+.save-btn,
+.remove-btn,
+.add-btn {
+    color: $primary-white;
+    font-weight: 600;
+    font-size: 24px;
+}
+
+.save-btn,
+.remove-btn {
+    font-size: 16px;
+    padding: 10px 15px;
+    border-radius: 50px;
+}
+
+.save-btn.success,
+.add-btn.success {
+    background-color: $success;
+    transition: all 0.3s ease-in-out;
+
+    &:hover,
+    &:focus {
+        background-color: $success-hover;
+    }
+    &:active {
+        background-color: $success-pressed;
+    }
+}
+
+.remove-btn.danger {
+    background-color: $danger;
+    transition: all 0.3s ease-in-out;
+
+    &:hover,
+    &:focus {
+        background-color: $danger-hover;
+    }
+    &:active {
+        background-color: $danger-pressed;
+    }
+}
+
+.remove-icon,
+.save-icon,
+.add-icon {
+    color: $primary-black;
+    margin-left: 10px;
+}
+
+.sm {
+    padding: 10px 15px;
+    border-radius: 50px;
+}
+
+.lg {
+    width: 100%;
+    padding: 15px;
+    border-radius: 50px;
+}

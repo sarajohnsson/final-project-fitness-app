@@ -40,10 +40,15 @@
         padding: 5px;
         border-radius: 5px;
         color: $secondary-dark;
+        transition: all 0.3s ease-in-out;
 
-        &:hover {
-            transition: all 0.3s ease;
-            color: $brand-orange;
+        &:hover,
+        &:focus {
+            background-color: $primary-btn-hover;
+        }
+
+        &:active {
+            background-color: $primary-btn-pressed;
         }
     }
 }

@@ -1,0 +1,71 @@
+@import '../../sassStyles/global';
+
+.exercise-modal {
+    padding: 20px;
+    background-color: $secondary-dark;
+    border: 1px solid $brand-orange;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    width: 100%;
+
+    .close-exercise-btn {
+        display: block;
+        margin: auto;
+        margin-right: 0;
+        font-size: 2rem;
+        margin-bottom: 10px;
+        color: $brand-orange;
+        transition: all 0.3s ease-in-out;
+
+        &:hover,
+        &:focus {
+            color: $primary-btn-hover;
+        }
+
+        &:active {
+            color: $primary-btn-pressed;
+        }
+    }
+
+    .input-container {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        margin-bottom: 20px;
+
+        p {
+            margin-bottom: 10px;
+        }
+
+        label {
+            text-align: left;
+            font-size: 1rem;
+            font-weight: 700;
+            color: $primary-white;
+
+            input {
+                border: none;
+                font-size: 1rem;
+                padding: 10px 15px;
+                border-radius: 10px;
+            }
+        }
+    }
+}
+
+.add-exercise-btn {
+    background-color: $success;
+    font-size: 2rem;
+    padding: 5px 20px;
+    border-radius: 10px;
+    transition: all 0.3s ease-in-out;
+
+    &:hover,
+    &:focus {
+        background-color: $success-hover;
+    }
+
+    &:active {
+        background-color: $success-pressed;
+    }
+}

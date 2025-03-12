@@ -41,6 +41,20 @@
 .nav-item {
     display: flex;
     gap: 30px;
+
+    .nav-link {
+        padding: 8px 10px;
+        border-radius: 5px;
+
+        &:hover,
+        &:focus {
+            background-color: $secondary-dark;
+            border-bottom: 1.5px solid $brand-orange;
+        }
+        &:active {
+            border: 1px solid $brand-orange;
+        }
+    }
 }
 
 .nav-btn,
