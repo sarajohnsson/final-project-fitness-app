@@ -16,8 +16,12 @@ export default function WorkoutsModal({ isOpen, onClose, refreshWorkouts }) {
     });
 
     const addWorkout = async (data) => {
+        const customWorkoutId = data.workoutName
+            .toLowerCase()
+            .replace(/\s+/g, '-');
         const newWorkout = {
             name: data.workoutName,
+            customId: customWorkoutId,
             exercise: [],
             createdAt: serverTimestamp(),
         };

@@ -45,17 +45,6 @@
     .nav-link {
         padding: 8px 10px;
         border-radius: 5px;
-        overflow: hidden;
-
-        &:hover,
-        &:focus {
-            border-bottom: 1.5px solid $brand-orange;
-            background-color: none;
-            border-radius: 5px;
-        }
-        &:active {
-            border: 1px solid $brand-orange;
-        }
     }
 }
 

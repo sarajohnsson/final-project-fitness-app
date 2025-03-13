@@ -21,9 +21,9 @@ export default function WorkoutsPage() {
 
         const workoutSnap = querySnapshot.docs.map((workoutProp) => ({
             id: workoutProp.id,
+            customId: workoutProp.data().customId,
             ...workoutProp.data(),
         }));
-
         setWorkouts(workoutSnap);
     };
 
