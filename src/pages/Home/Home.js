@@ -71,26 +71,23 @@ export default function Home() {
                     />
                 </div>
             </section>
-            <section className="subsection">
-                <div
-                    className="subsection-overlay"
-                    style={{
-                        backgroundImage: `url(${backgroundImage})`,
-                        backgroundPosition: 'center',
-                        backgroundSize: 'cover',
-                        backgroundRepeat: 'no-repeat',
-                    }}>
-                    <div className="subsection-container">
-                        <h2 className="subsection-desc">
-                            Take your fitness journey to the next level
-                            <span className="subsection-title-filled">
-                                {' '}
-                                with powerful tools designed to keep you
-                                motivated
-                            </span>{' '}
-                            {''}and on track
-                        </h2>
-                    </div>
+            <section
+                className="subsection subsection-overlay"
+                style={{
+                    backgroundImage: `url(${backgroundImage})`,
+                    backgroundPosition: 'center',
+                    backgroundSize: 'cover',
+                    backgroundRepeat: 'no-repeat',
+                }}>
+                <div className="subsection-container">
+                    <h2 className="subsection-desc">
+                        Take your fitness journey to the next level
+                        <span className="subsection-title-filled">
+                            {' '}
+                            with powerful tools designed to keep you motivated
+                        </span>{' '}
+                        {''}and on track
+                    </h2>
                 </div>
             </section>
         </>

@@ -46,8 +46,19 @@
     .custom-exercise-box {
         display: flex;
         align-items: center;
-        justify-content: space-between;
+        flex-direction: column;
         margin-bottom: 20px;
+        border-radius: 10px;
+        border: 1px solid $brand-orange;
+        background-color: $secondary-dark;
+        padding: 20px;
+
+        .custom-exercise-header {
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            align-items: center;
+        }
 
         .custom-exercise-title {
             font-family: 'Poppins', sans-serif;
@@ -60,25 +71,29 @@
 
 .exercise-table-header {
     margin-bottom: 20px;
+    width: 100%;
 
     ul {
         display: flex;
-        justify-content: space-around;
+        justify-content: space-between;
         align-items: center;
-        gap: 20px;
     }
 
     li {
-        display: flex;
         width: 100%;
+        display: flex;
+        align-items: center;
         font-family: 'Poppins', sans-serif;
-        font-size: 2rem;
+        font-size: 24px;
         font-weight: 500;
         color: $primary-white;
     }
 }
 
 .exercise-table-body {
+    width: 100%;
+    margin-bottom: 20px;
+
     ul {
         display: flex;
         justify-content: space-around;
@@ -90,31 +105,30 @@
         background-color: $primary-white;
         display: flex;
         width: 100%;
-        font-size: 24px;
+        font-size: 20px;
         color: $primary-black;
         padding: 10px;
         border-radius: 10px;
     }
 }
 
-// --- BUTTONS ---
-
-.save-btn,
-.remove-btn,
 .add-btn {
-    color: $primary-white;
-    font-weight: 600;
-    font-size: 24px;
+    display: block;
+    margin-left: 0;
+    margin-right: auto;
 }
 
-.save-btn,
-.remove-btn {
-    font-size: 16px;
+// --- BUTTONS ---
+
+.remove-btn,
+.add-btn {
+    font-size: 1rem;
+    color: $primary-white;
+    font-weight: 600;
     padding: 10px 15px;
     border-radius: 50px;
 }
 
-.save-btn.success,
 .add-btn.success {
     background-color: $success;
     transition: all 0.3s ease-in-out;

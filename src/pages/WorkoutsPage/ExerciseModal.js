@@ -1,11 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
     addDoc,
     arrayUnion,
     collection,
     doc,
-    getDoc,
-    setDoc,
     updateDoc,
 } from 'firebase/firestore';
 import { useForm } from 'react-hook-form';
@@ -15,44 +13,37 @@ import { faXmark, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { db } from '../../firebase/config';
 
 export default function ExerciseModal({
-    className,
-    title,
-    children,
-    getExerciseData,
-    exerciseToEdit,
-    setExerciseToEdit,
-    exerciseArray,
+    isOpen,
+    onClose,
     workoutId,
+    refreshWorkouts,
 }) {
-    const [isActive, setIsActive] = useState(false);
-
-    const { register, handleSubmit, formState, reset } = useForm({
+    const { register, handleSubmit, reset } = useForm({
         mode: 'onChange',
     });
 
     const onSubmit = async (data) => {
-        if (exerciseToEdit) {
-            // edit exercise
-        } else {
-            // add exercise
+        console.log(data);
+        if (workoutId) {
+            const workoutRef = doc(db, 'workouts', workoutId);
+            await updateDoc(workoutRef, {
+                exercises: arrayUnion(data),
+            });
+            onClose();
+            reset();
+            refreshWorkouts();
         }
     };
 
     return (
         <>
-            <button onClick={() => setIsActive(true)} className={className}>
-                {title}
-                {children}
-            </button>
-            {isActive && (
+            {isOpen && (
                 <form
                     className="exercise-form"
                     onSubmit={handleSubmit(onSubmit)}>
                     <div className="exercise-modal">
                         <button
-                            onClick={() => {
-                                setIsActive(false);
-                            }}
+                            onClick={onClose}
                             className="close-exercise-btn">
                             <FontAwesomeIcon icon={faXmark} />
                         </button>
