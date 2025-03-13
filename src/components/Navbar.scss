@@ -50,6 +50,8 @@
         &:hover,
         &:focus {
             border-bottom: 1.5px solid $brand-orange;
+            background-color: none;
+            border-radius: 5px;
         }
         &:active {
             border: 1px solid $brand-orange;
