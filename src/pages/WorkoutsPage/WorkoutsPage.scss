@@ -11,9 +11,16 @@
 }
 
 .workout-container {
-    background-color: $secondary-light;
-    padding: 20px;
-    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 40px;
+
+    .generated-workout {
+        background-color: $secondary-light;
+        padding: 20px;
+        border-radius: 10px;
+    }
 }
 
 .session-container {

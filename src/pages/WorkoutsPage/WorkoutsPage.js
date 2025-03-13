@@ -1,27 +1,29 @@
-import { collection, getDocs } from 'firebase/firestore';
+import { collection, getDocs, orderBy, query } from 'firebase/firestore';
 import { db } from '../../firebase/config';
 import { useEffect, useState } from 'react';
 import './WorkoutsPage.scss';
 import Button from '../../components/ui/Button';
+import WorkoutModal from './WorkoutModal';
 import ExerciseModal from './ExerciseModal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-    faTrashCan,
-    faBookmark,
-    faCirclePlus,
-} from '@fortawesome/free-solid-svg-icons';
+import { faTrashCan, faCirclePlus } from '@fortawesome/free-solid-svg-icons';
 
 export default function WorkoutsPage() {
     const [workouts, setWorkouts] = useState([]);
     const [activeWorkoutId, setActiveWorkoutId] = useState(null);
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isWorkoutModalOpen, setIsWorkoutModalOpen] = useState(false);
+    const [isExerciseModalOpen, setIsExerciseModalOpen] = useState(false);
 
     const getAllWorkouts = async () => {
-        const querySnapshot = await getDocs(collection(db, 'workouts'));
+        const workoutsRef = collection(db, 'workouts');
+        const q = query(workoutsRef, orderBy('createdAt', 'desc'));
+        const querySnapshot = await getDocs(q);
+
         const workoutSnap = querySnapshot.docs.map((workoutProp) => ({
             id: workoutProp.id,
             ...workoutProp.data(),
         }));
+
         setWorkouts(workoutSnap);
     };
 
@@ -38,14 +40,23 @@ export default function WorkoutsPage() {
         <div className="workout-wrapper">
             <Button
                 className="add-workout add-btn success lg"
-                title="Add workout">
-                <FontAwesomeIcon className="add-icon" icon={faBookmark} />
+                title="Add workout"
+                onClick={() => setIsWorkoutModalOpen(true)}>
+                <FontAwesomeIcon className="add-icon" icon={faCirclePlus} />
             </Button>
+            <WorkoutModal
+                isOpen={isWorkoutModalOpen}
+                onClose={() => setIsWorkoutModalOpen(false)}
+                refreshWorkouts={refreshWorkouts}
+            />
             <div className="workout-container">
                 {workouts.map((workout) => (
-                    <div key={workout.id} data-id={workout.id}>
+                    <div
+                        className="generated-workout"
+                        key={workout.id}
+                        data-id={workout.id}>
                         <div className="session-container">
-                            <h2 className="workout-title">{workout.id}</h2>
+                            <h2 className="workout-title">{workout.name}</h2>
                             <div className="session-box">
                                 <Button
                                     className="remove-btn danger"
@@ -64,7 +75,7 @@ export default function WorkoutsPage() {
                                 title="Add Exercise"
                                 onClick={() => {
                                     setActiveWorkoutId(workout.id);
-                                    setIsModalOpen(true);
+                                    setIsExerciseModalOpen(true);
                                 }}>
                                 <FontAwesomeIcon
                                     className="add-icon"
@@ -72,8 +83,8 @@ export default function WorkoutsPage() {
                                 />
                             </Button>
                             <ExerciseModal
-                                isOpen={isModalOpen}
-                                onClose={() => setIsModalOpen(false)}
+                                isOpen={isExerciseModalOpen}
+                                onClose={() => setIsExerciseModalOpen(false)}
                                 workoutId={activeWorkoutId}
                                 refreshWorkouts={refreshWorkouts}
                             />
