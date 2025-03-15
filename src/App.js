@@ -17,29 +17,32 @@ function App() {
             <Routes>
                 <Route path="/" element={<DefaultLayout />}>
                     <Route index element={<Home />} />
-                    <Route path="/loginpage" element={<LoginPage />} />
-                    <Route path="/exerciselist" element={<ExerciseList />} />
+                    <Route path="/login" element={<LoginPage />} />
+                    <Route
+                        path="/exercisedatabase"
+                        element={<ExerciseList />}
+                    />
                     {/* <Route path="aboutpage" element={<AboutPage />} /> */}
                     {isLoggedIn ? (
                         <>
                             <Route
-                                path="/workoutspage"
+                                path="/progress"
                                 element={<WorkoutsPage />}
                             />
                             {/* <Route
-                                path="/progresspage"
-                                element={<WorkoutsPage />}
+                                path="/favourites"
+                                element={<FavouritesPage />}
                             /> */}
                         </>
                     ) : (
                         <>
                             <Route
-                                path="workoutspage"
-                                element={<Navigate to="/loginpage" />}
+                                path="progress"
+                                element={<Navigate to="/login" />}
                             />
                             {/* <Route
-                                path="progresspage"
-                                element={<Navigate to="/loginpage" />}
+                                path="favourites"
+                                element={<Navigate to="/login" />}
                             /> */}
                         </>
                     )}

@@ -1,4 +1,14 @@
-import { collection, getDocs, orderBy, query } from 'firebase/firestore';
+import {
+    collection,
+    getDocs,
+    orderBy,
+    query,
+    doc,
+    getDoc,
+    deleteDoc,
+    updateDoc,
+    arrayUnion,
+} from 'firebase/firestore';
 import { db } from '../../firebase/config';
 import { useEffect, useState } from 'react';
 import './WorkoutsPage.scss';
@@ -7,6 +17,7 @@ import WorkoutModal from './WorkoutModal';
 import ExerciseModal from './ExerciseModal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashCan, faCirclePlus } from '@fortawesome/free-solid-svg-icons';
+import { Container } from '@mui/material';
 
 export default function WorkoutsPage() {
     const [workouts, setWorkouts] = useState([]);
@@ -14,17 +25,72 @@ export default function WorkoutsPage() {
     const [isWorkoutModalOpen, setIsWorkoutModalOpen] = useState(false);
     const [isExerciseModalOpen, setIsExerciseModalOpen] = useState(false);
 
-    const getAllWorkouts = async () => {
-        const workoutsRef = collection(db, 'workouts');
-        const q = query(workoutsRef, orderBy('createdAt', 'desc'));
-        const querySnapshot = await getDocs(q);
+    // const addFields = async (workoutId, exerciseIndex) => {
+    //     const exerciseRef = doc(db, 'workouts', workoutId);
+    //     const workoutDoc = await getDoc(exerciseRef);
+    //     if (!workoutDoc.exists()) {
+    //         throw new Error('Workout not found');
+    //     }
+    //     const exercises = workoutDoc.data().exercises || [];
 
-        const workoutSnap = querySnapshot.docs.map((workoutProp) => ({
-            id: workoutProp.id,
-            customId: workoutProp.data().customId,
-            ...workoutProp.data(),
-        }));
-        setWorkouts(workoutSnap);
+    //     if (!exercises[exerciseIndex]) {
+    //         throw new Error('No exercises found in the workout');
+    //     }
+
+    //     await updateDoc(exerciseRef, {
+    //         exercises: arrayUnion({
+    //             ...exercises[exerciseIndex],
+    //             sets: [
+    //                 ...(exercises[exerciseIndex].sets || []),
+    //                 { reps: '', weight: '' },
+    //             ],
+    //         }),
+    //     });
+
+    //     refreshWorkouts();
+    // };
+
+    const deleteWorkouts = async (workout) => {
+        const deleteWorkoutsRef = doc(db, 'workouts', workout.id);
+        await deleteDoc(deleteWorkoutsRef);
+        refreshWorkouts();
+    };
+
+    const deleteExercise = async (workoutId, exerciseIndex) => {
+        try {
+            const deleteExerciseRef = doc(db, 'workouts', workoutId);
+            const workoutDoc = await getDoc(deleteExerciseRef);
+            const exercises = workoutDoc.data().exercises;
+
+            exercises.splice(exerciseIndex, 1);
+
+            await updateDoc(deleteExerciseRef, {
+                exercises,
+            });
+            refreshWorkouts();
+        } catch (error) {
+            console.error('Error deleting exercise', error);
+        }
+    };
+
+    const getAllWorkouts = async () => {
+        try {
+            const getWorkoutsRef = collection(db, 'workouts');
+            const querySorting = query(
+                getWorkoutsRef,
+                orderBy('createdAt', 'desc')
+            );
+            const querySnapshot = await getDocs(querySorting);
+
+            const workoutSnap = querySnapshot.docs.map((workoutProp) => ({
+                id: workoutProp.id,
+                customId: workoutProp.data().customId,
+                ...workoutProp.data(),
+            }));
+            setWorkouts(workoutSnap);
+        } catch (error) {
+            console.error('Error fetching workout', error);
+        }
     };
 
     const refreshWorkouts = async () => {
@@ -37,7 +103,7 @@ export default function WorkoutsPage() {
     }, []);
 
     return (
-        <div className="workout-wrapper">
+        <Container maxWidth="lg" className="workout-wrapper">
             <Button
                 className="add-workout add-btn success lg"
                 title="Add workout"
@@ -49,7 +115,7 @@ export default function WorkoutsPage() {
                 onClose={() => setIsWorkoutModalOpen(false)}
                 refreshWorkouts={refreshWorkouts}
             />
-            <div className="workout-container">
+            <section className="workout-container">
                 {workouts.map((workout) => (
                     <div
                         className="generated-workout"
@@ -59,6 +125,7 @@ export default function WorkoutsPage() {
                             <h2 className="workout-title">{workout.name}</h2>
                             <div className="session-box">
                                 <Button
+                                    onClick={() => deleteWorkouts(workout)}
                                     className="remove-btn danger"
                                     title="Remove workout">
                                     <FontAwesomeIcon
@@ -82,12 +149,16 @@ export default function WorkoutsPage() {
                                     icon={faCirclePlus}
                                 />
                             </Button>
-                            <ExerciseModal
-                                isOpen={isExerciseModalOpen}
-                                onClose={() => setIsExerciseModalOpen(false)}
-                                workoutId={activeWorkoutId}
-                                refreshWorkouts={refreshWorkouts}
-                            />
+                            {activeWorkoutId === workout.id && (
+                                <ExerciseModal
+                                    isOpen={isExerciseModalOpen}
+                                    onClose={() =>
+                                        setIsExerciseModalOpen(false)
+                                    }
+                                    workoutId={activeWorkoutId}
+                                    refreshWorkouts={refreshWorkouts}
+                                />
+                            )}
                             {/* Render exercises */}
                             {workout.exercises &&
                                 workout.exercises.map((exercise, index) => (
@@ -99,6 +170,12 @@ export default function WorkoutsPage() {
                                                 {exercise.name}
                                             </div>
                                             <Button
+                                                onClick={() => {
+                                                    deleteExercise(
+                                                        workout.id,
+                                                        index
+                                                    );
+                                                }}
                                                 className="remove-btn danger"
                                                 title="Remove exercise">
                                                 <FontAwesomeIcon
@@ -120,6 +197,7 @@ export default function WorkoutsPage() {
                                                 </li>
                                             </ul>
                                         </div>
+                                        {/* Rendered sets */}
                                         <div className="exercise-table-body">
                                             <ul>
                                                 <li className="exercise-body-item">
@@ -134,10 +212,10 @@ export default function WorkoutsPage() {
                                             </ul>
                                         </div>
                                         <Button
-                                            className="add-btn success sm"
+                                            className="add-btn disabled sm"
                                             title="Add Set">
                                             <FontAwesomeIcon
-                                                className="add-icon"
+                                                className="add-icon disabled"
                                                 icon={faCirclePlus}
                                             />
                                         </Button>
@@ -146,7 +224,7 @@ export default function WorkoutsPage() {
                         </div>
                     </div>
                 ))}
-            </div>
-        </div>
+            </section>
+        </Container>
     );
 }

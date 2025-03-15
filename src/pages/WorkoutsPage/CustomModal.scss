@@ -4,18 +4,16 @@
 
 .exercise-modal {
     padding: 20px;
-    background-color: $secondary-dark;
-    border: 1px solid $brand-orange;
-    border-radius: 10px;
+    background: linear-gradient($direction, $big-btn-default);
+    border-radius: 15px;
     margin-bottom: 20px;
     width: 100%;
 }
 
 .workout-modal {
     padding: 20px;
-    background-color: $secondary-dark;
-    border: 1px solid $brand-orange;
-    border-radius: 10px;
+    background: linear-gradient($direction, $big-btn-default);
+    border-radius: 15px;
     margin-bottom: 20px;
 }
 
@@ -36,49 +34,20 @@
         color: $primary-white;
         flex-grow: 1;
 
-        .workout-title {
-            white-space: nowrap;
-        }
-
         .workout-modal-input {
             width: 100%;
-            flex-grow: 1;
-            border: none;
-            font-size: 1rem;
-            padding: 10px 15px;
-            border-radius: 10px;
         }
     }
 }
 
 .add-exercise-container {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    gap: 20px;
     margin-bottom: 20px;
 
     .add-exercise-row {
         width: 100%;
-    }
-
-    .add-exercise-label {
-        text-align: left;
-        font-size: 1rem;
-        font-weight: 700;
-        color: $primary-white;
-
-        .add-exercise-title {
-            margin-bottom: 10px;
-        }
-
-        .add-exercise-modal-input {
-            width: 100%;
-            flex-grow: 1;
-            border: none;
-            font-size: 1rem;
-            padding: 10px 15px;
-            border-radius: 10px;
-        }
     }
 }
 
@@ -90,16 +59,16 @@
     margin-right: 0;
     font-size: 2rem;
     margin-bottom: 10px;
-    color: $brand-orange;
+    color: $secondary-btn-default;
     transition: all 0.3s ease-in-out;
 
     &:hover,
     &:focus {
-        color: $primary-btn-hover;
+        color: $secondary-btn-hover;
     }
 
     &:active {
-        color: $primary-btn-pressed;
+        color: $secondary-btn-pressed;
     }
 }
 
@@ -109,7 +78,7 @@
     background-color: $success;
     font-size: 1.25rem;
     font-weight: 600;
-    padding: 5px 10px;
+    padding: 10px 15px;
     border-radius: 50px;
     white-space: nowrap;
     transition: all 0.3s ease-in-out;
@@ -125,5 +94,43 @@
 }
 
 .save-icon {
+    font-size: 1.5rem;
     margin-left: 10px;
+}
+
+// --- MUI ---
+.add-exercise-modal-input .MuiFilledInput-root,
+.workout-modal-input .MuiFilledInput-root {
+    color: $primary-white;
+    border-radius: 10px;
+}
+
+.add-exercise-modal-input .MuiFilledInput-root::before,
+.workout-modal-input .MuiFilledInput-root::before,
+.add-exercise-modal-input .MuiFilledInput-root::after,
+.workout-modal-input .MuiFilledInput-root::after {
+    border-radius: 10px;
+}
+
+// --- MEDIA QUERY ---
+
+@media (max-width: 900px) {
+    .exercise-modal .MuiContainer-root {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 600px) {
+    .add-form-btn {
+        font-size: 0;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .save-icon {
+        margin-left: 0;
+        font-size: 1.5rem;
+        padding: 5px;
+    }
 }

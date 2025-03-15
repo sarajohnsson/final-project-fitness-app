@@ -4,6 +4,7 @@ import { faXmark, faBookmark } from '@fortawesome/free-solid-svg-icons';
 import './CustomModal.scss';
 import { addDoc, serverTimestamp, collection } from 'firebase/firestore';
 import { db } from '../../firebase/config';
+import { Container, TextField } from '@mui/material';
 
 export default function WorkoutsModal({ isOpen, onClose, refreshWorkouts }) {
     const {
@@ -50,10 +51,11 @@ export default function WorkoutsModal({ isOpen, onClose, refreshWorkouts }) {
                         <div className="workout-container">
                             <div className="workout-row">
                                 <label className="workout-label">
-                                    <p className="workout-title">
-                                        Workout name:{' '}
-                                    </p>
-                                    <input
+                                    <TextField
+                                        id="filled-size-small"
+                                        label="Workout name"
+                                        variant="filled"
+                                        size="small"
                                         {...register('workoutName', {
                                             required:
                                                 'Workout name is required',

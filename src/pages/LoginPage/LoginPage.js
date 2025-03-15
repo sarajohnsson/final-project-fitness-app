@@ -11,6 +11,7 @@ import {
 import { useDispatch } from 'react-redux';
 import { setUser } from '../../store/usersSlice.js';
 import { useNavigate } from 'react-router-dom';
+import { Container } from '@mui/material';
 
 export default function LoginPage() {
     const dispatch = useDispatch();
@@ -101,75 +102,81 @@ export default function LoginPage() {
     }
 
     return (
-        <div className="login-container">
+        <>
             <section>
-                <h2 className="login-title">Welcome to the Fitness App</h2>
-                <p className="login-text">
-                    Login or create an account to continue
-                </p>
-                <div className="login-type">
-                    <Button
-                        className={`login-btn ${
-                            activeButton === 'login' ? 'active selected' : ''
-                        }`}
-                        title="Login"
-                        onClick={selectLogin}
-                    />
-                    <Button
-                        className={`login-btn ${
-                            activeButton === 'signup' ? 'active selected' : ''
-                        }`}
-                        title="Signup"
-                        onClick={selectSignup}
-                    />
-                </div>
-                <form className="add-form login">
-                    <div className="login-form-control">
-                        <label className="form-label">Email*</label>
-                        <Input
-                            onChangeFunction={(value) =>
-                                handleCredentials('email', value)
-                            }
-                            className="login-credentials"
-                            name="email"
-                            type="text"
-                            placeholder="Enter your email"
-                            value={userCredentials.email}
+                <Container maxWidth="lg" className="login-container">
+                    <h2 className="login-title">Welcome to the Fitness App</h2>
+                    <p className="login-text">
+                        Login or create an account to continue
+                    </p>
+                    <div className="login-type">
+                        <Button
+                            className={`login-btn ${
+                                activeButton === 'login'
+                                    ? 'active selected'
+                                    : ''
+                            }`}
+                            title="Login"
+                            onClick={selectLogin}
                         />
-                        <label className="form-label">Password*</label>
-                        <Input
-                            onChangeFunction={(value) =>
-                                handleCredentials('password', value)
-                            }
-                            className="signup-credentials"
-                            name="password"
-                            type="password"
-                            placeholder="Enter your password"
-                            value={userCredentials.password}
+                        <Button
+                            className={`login-btn ${
+                                activeButton === 'signup'
+                                    ? 'active selected'
+                                    : ''
+                            }`}
+                            title="Signup"
+                            onClick={selectSignup}
                         />
                     </div>
+                    <form className="add-form login">
+                        <div className="login-form-control">
+                            <label className="form-label">Email*</label>
+                            <Input
+                                onChangeFunction={(value) =>
+                                    handleCredentials('email', value)
+                                }
+                                className="login-credentials"
+                                name="email"
+                                type="text"
+                                placeholder="Enter your email"
+                                value={userCredentials.email}
+                            />
+                            <label className="form-label">Password*</label>
+                            <Input
+                                onChangeFunction={(value) =>
+                                    handleCredentials('password', value)
+                                }
+                                className="signup-credentials"
+                                name="password"
+                                type="password"
+                                placeholder="Enter your password"
+                                value={userCredentials.password}
+                            />
+                        </div>
 
-                    {loginType === 'login' ? (
-                        <button
-                            onClick={(e) => {
-                                handleLogin(e);
-                            }}
-                            className="submit-btn-active submit-btn login-btn-block">
-                            Login
-                        </button>
-                    ) : (
-                        <button
-                            onClick={(e) => {
-                                handleSignup(e);
-                            }}
-                            className="submit-btn-active submit-btn login-btn-block">
-                            Sign Up
-                        </button>
-                    )}
+                        {loginType === 'login' ? (
+                            <button
+                                onClick={(e) => {
+                                    handleLogin(e);
+                                }}
+                                className="submit-btn-active submit-btn login-btn-block">
+                                Login
+                            </button>
+                        ) : (
+                            <button
+                                onClick={(e) => {
+                                    handleSignup(e);
+                                }}
+                                className="submit-btn-active submit-btn login-btn-block">
+                                Sign Up
+                            </button>
+                        )}
 
-                    {error && <div className="error">{error}</div>}
-                </form>
+                        {error && <div className="error">{error}</div>}
+                    </form>
+                </Container>
             </section>
-        </div>
+        </>
     );
 }

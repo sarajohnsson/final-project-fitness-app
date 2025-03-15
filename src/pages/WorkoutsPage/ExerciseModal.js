@@ -1,9 +1,10 @@
-import { arrayUnion, doc, updateDoc } from 'firebase/firestore';
+import { arrayUnion, doc, updateDoc, getDoc } from 'firebase/firestore';
 import { useForm } from 'react-hook-form';
 import './CustomModal.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark, faBookmark } from '@fortawesome/free-solid-svg-icons';
 import { db } from '../../firebase/config';
+import { Container, TextField } from '@mui/material';
 
 export default function ExerciseModal({
     isOpen,
@@ -21,7 +22,7 @@ export default function ExerciseModal({
             name: data.exerciseName,
             sets: parseInt(data.sets),
             reps: parseInt(data.reps),
-            weight: parseInt(data.weight),
+            weight: parseFloat(data.weight),
         };
 
         try {
@@ -52,57 +53,66 @@ export default function ExerciseModal({
                         <button onClick={onClose} className="close-form-btn">
                             <FontAwesomeIcon icon={faXmark} />
                         </button>
-                        <div className="add-exercise-container">
+                        <Container
+                            maxWidth="lg"
+                            className="add-exercise-container">
                             <div className="add-exercise-row">
                                 <label className="add-exercise-label">
-                                    <p className="add-exercise-title">Name: </p>
-                                    <input
+                                    <TextField
+                                        id="filled-size-small"
+                                        label="Exercise name"
+                                        variant="filled"
+                                        size="small"
                                         {...register('exerciseName', {
                                             required:
                                                 'Exercise name is required',
                                         })}
                                         type="text"
-                                        className="exercise-modal-input"
-                                    />
-                                </label>
-                            </div>
-                            <div className="add-exercise-row">
-                                <label className="add-eexercise-label">
-                                    <p className="add-eexercise-title">
-                                        Sets:{' '}
-                                    </p>
-                                    <input
-                                        {...register('sets')}
-                                        type="number"
-                                        className="exercise-modal-input"
-                                    />
-                                </label>
-                            </div>
-                            <div className="add-exercise-row">
-                                <label className="add-eexercise-label">
-                                    <p className="add-eexercise-title">
-                                        Reps:{' '}
-                                    </p>
-                                    <input
-                                        {...register('reps')}
-                                        type="number"
-                                        className="exercise-modal-input"
+                                        className="add-exercise-modal-input"
                                     />
                                 </label>
                             </div>
                             <div className="add-exercise-row">
                                 <label className="add-exercise-label">
-                                    <p className="add-exercise-title">
-                                        Weight:{' '}
-                                    </p>
-                                    <input
-                                        {...register('weight')}
+                                    <TextField
+                                        id="filled-size-small"
+                                        label="Sets"
+                                        variant="filled"
+                                        size="small"
+                                        {...register('sets')}
                                         type="number"
-                                        className="exercise-modal-input"
+                                        className="add-exercise-modal-input"
                                     />
                                 </label>
                             </div>
-                        </div>
+                            <div className="add-exercise-row">
+                                <label className="add-exercise-label">
+                                    <TextField
+                                        id="filled-size-small"
+                                        label="Reps"
+                                        variant="filled"
+                                        size="small"
+                                        {...register('reps')}
+                                        type="number"
+                                        className="add-exercise-modal-input"
+                                    />
+                                </label>
+                            </div>
+                            <div className="add-exercise-row">
+                                <label className="add-exercise-label">
+                                    <TextField
+                                        id="filled-size-small"
+                                        label="Weight"
+                                        variant="filled"
+                                        size="small"
+                                        put
+                                        {...register('weight')}
+                                        type="number"
+                                        className="add-exercise-modal-input"
+                                    />
+                                </label>
+                            </div>
+                        </Container>
                         <button type="submit" className="add-form-btn">
                             Save exercise
                             <FontAwesomeIcon

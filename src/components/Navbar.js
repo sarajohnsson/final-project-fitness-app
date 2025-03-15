@@ -9,27 +9,48 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { selectUsers } from '../store/usersSlice';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons/faArrowRightFromBracket';
-import { faFireFlameCurved } from '@fortawesome/free-solid-svg-icons/faFireFlameCurved';
+import {
+    faArrowRightFromBracket,
+    faFireFlameCurved,
+    faHouse,
+    faHeart,
+    faDumbbell,
+    faChartLine,
+    faCircleInfo,
+} from '@fortawesome/free-solid-svg-icons';
+import {
+    BottomNavigation,
+    BottomNavigationAction,
+    Container,
+    useMediaQuery,
+    useTheme,
+} from '@mui/material';
 
 export default function Navbar() {
     const dispatch = useDispatch();
     const [scrolled, setScrolled] = useState(false);
+    // User credentials
     const user = useSelector(selectUsers);
     const isLoggedIn = user?.currentUser;
+    // Responsive navigation
+    const [value, setValue] = useState(0);
+    const theme = useTheme();
+    const isMediumScreen = useMediaQuery(theme.breakpoints.down('md'));
 
     useEffect(() => {
-        const handleScroll = () => {
-            if (window.scrollY > 50) {
-                setScrolled(true);
-            } else {
-                setScrolled(false);
-            }
-        };
+        if (!isMediumScreen) {
+            const handleScroll = () => {
+                if (window.scrollY > 50) {
+                    setScrolled(true);
+                } else {
+                    setScrolled(false);
+                }
+            };
 
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
+            window.addEventListener('scroll', handleScroll);
+            return () => window.removeEventListener('scroll', handleScroll);
+        }
+    }, [isMediumScreen]);
 
     function handleSignout() {
         if (window.confirm('Are you sure you want to log out')) {
@@ -46,54 +67,139 @@ export default function Navbar() {
     }
 
     return (
-        <div className={`nav-wrapper ${scrolled ? 'scrolled' : ''}`}>
-            <nav className="navigation">
-                <div className="logo">
-                    <Link to="/">
-                        <img className="logo-img" src={logo} alt="logo" />
-                    </Link>
-                </div>
-
-                <ul className="nav-list">
-                    <li className="nav-item">
-                        <NavLink className="nav-link" to="/">
-                            Home
-                        </NavLink>
-                        <NavLink className="nav-link" to="/exerciselist">
-                            Exercises
-                        </NavLink>
-                        <NavLink className="nav-link" to="/workoutspage">
-                            Workouts
-                        </NavLink>
-                        <NavLink className="nav-link" to="/progresspage">
-                            Progress
-                        </NavLink>
-                        <NavLink className="nav-link" to="/aboutpage">
-                            About
-                        </NavLink>
-                    </li>
-                </ul>
-                {isLoggedIn ? (
-                    <button
-                        onClick={handleSignout}
-                        className="logout-btn"
-                        to="home">
-                        <span className="action">Logout</span>
-                        <FontAwesomeIcon
-                            className="logout-icon"
-                            icon={faArrowRightFromBracket}
-                        />
-                    </button>
-                ) : (
-                    <Link className="nav-btn" to="/loginpage">
-                        <span className="action">Join here</span>
-                        <FontAwesomeIcon
-                            className="join-icon"
-                            icon={faFireFlameCurved}
-                        />
-                    </Link>
+        <div
+            className={`nav-wrapper ${
+                scrolled && !isMediumScreen ? 'scrolled' : ''
+            }`}>
+            <Container maxWidth="lg">
+                {isMediumScreen && (
+                    <Container maxWidth="m" className="logo-container">
+                        <Link to="/">
+                            <img className="logo-img" src={logo} alt="logo" />
+                        </Link>
+                        {isLoggedIn ? (
+                            <button
+                                onClick={handleSignout}
+                                className="logout-btn"
+                                to="home">
+                                <span className="action">Logout</span>
+                                <FontAwesomeIcon
+                                    className="logout-icon"
+                                    icon={faArrowRightFromBracket}
+                                />
+                            </button>
+                        ) : (
+                            <Link className="nav-btn" to="/login">
+                                <span className="action">Join here</span>
+                                <FontAwesomeIcon
+                                    className="join-icon"
+                                    icon={faFireFlameCurved}
+                                />
+                            </Link>
+                        )}
+                    </Container>
                 )}
-            </nav>
+                {!isMediumScreen ? (
+                    <nav className="navigation">
+                        <Link to="/">
+                            <img className="logo-img" src={logo} alt="logo" />
+                        </Link>
+
+                        <ul className="nav-list">
+                            <li className="nav-item">
+                                <NavLink className="nav-link" to="/">
+                                    Home
+                                </NavLink>
+                                <NavLink
+                                    className="nav-link"
+                                    to="/exercisedatabase">
+                                    Exercises
+                                </NavLink>
+                                <NavLink className="nav-link" to="/progress">
+                                    Progress
+                                </NavLink>
+                                <NavLink className="nav-link" to="/favourites">
+                                    Favourites
+                                </NavLink>
+                                <NavLink className="nav-link" to="/about">
+                                    About
+                                </NavLink>
+                            </li>
+                        </ul>
+                        {isLoggedIn ? (
+                            <button
+                                onClick={handleSignout}
+                                className="logout-btn"
+                                to="home">
+                                <span className="action">Logout</span>
+                                <FontAwesomeIcon
+                                    className="logout-icon"
+                                    icon={faArrowRightFromBracket}
+                                />
+                            </button>
+                        ) : (
+                            <Link className="nav-btn" to="/login">
+                                <span className="action">Join here</span>
+                                <FontAwesomeIcon
+                                    className="join-icon"
+                                    icon={faFireFlameCurved}
+                                />
+                            </Link>
+                        )}
+                    </nav>
+                ) : (
+                    <div className="bottom-container">
+                        <BottomNavigation
+                            showLabels
+                            value={value}
+                            onChange={(event, newValue) => {
+                                setValue(newValue);
+                            }}
+                            className="bottom-nav">
+                            <BottomNavigationAction
+                                label="Home"
+                                icon=<FontAwesomeIcon icon={faHouse} />
+                                component={Link}
+                                to="/"
+                                value="/"
+                                sx={{ minWidth: 'auto' }}
+                            />
+                            <BottomNavigationAction
+                                label="Exercises"
+                                icon=<FontAwesomeIcon icon={faDumbbell} />
+                                component={Link}
+                                to="/exercisedatabase"
+                                value="/exercisedatabase"
+                                sx={{ minWidth: 'auto' }}
+                            />
+                            <BottomNavigationAction
+                                label="Progress"
+                                icon=<FontAwesomeIcon icon={faChartLine} />
+                                component={Link}
+                                to="/progress"
+                                value="/progress"
+                                sx={{ minWidth: 'auto' }}
+                            />
+                            <BottomNavigationAction
+                                label="Favourites"
+                                icon=<FontAwesomeIcon icon={faHeart} />
+                                component={Link}
+                                to="/favourites"
+                                value="/favourites"
+                                sx={{ minWidth: 'auto' }}
+                            />
+                            <BottomNavigationAction
+                                label="About"
+                                icon=<FontAwesomeIcon icon={faCircleInfo} />
+                                component={Link}
+                                to="/about"
+                                value="/about"
+                                sx={{ minWidth: 'auto' }}
+                            />
+                        </BottomNavigation>
+                    </div>
+                )}
+            </Container>
         </div>
     );
 }

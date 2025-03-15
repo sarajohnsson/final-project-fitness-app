@@ -37,18 +37,17 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        padding: 5px;
-        border-radius: 5px;
+        font-size: 1.5rem;
         color: $secondary-dark;
         transition: all 0.3s ease-in-out;
 
         &:hover,
         &:focus {
-            background-color: $primary-btn-hover;
+            color: $primary-btn-hover;
         }
 
         &:active {
-            background-color: $primary-btn-pressed;
+            color: $primary-btn-pressed;
         }
     }
 }
@@ -56,6 +55,7 @@
 .modal-image {
     border-radius: 15px;
     box-shadow: 0 0 16px rgba($color: $primary-black, $alpha: 0.5);
+    margin-bottom: 20px;
 }
 
 .modal-title {

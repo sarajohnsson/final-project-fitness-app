@@ -7,6 +7,7 @@ import './ExerciseList.scss';
 import Modal, { useModal } from '../../components/ui/Modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDumbbell } from '@fortawesome/free-solid-svg-icons/faDumbbell';
+import { Container, Grid2 } from '@mui/material';
 
 export default function ExerciseList() {
     const url = '/data/exercises.json';
@@ -59,7 +60,7 @@ export default function ExerciseList() {
 
     return (
         <>
-            <div className="exercise-wrapper">
+            <Container maxWidth="lg" className="exercise-wrapper">
                 <div className="exercise-input-group">
                     <Input
                         type="text"
@@ -80,7 +81,7 @@ export default function ExerciseList() {
                 </div>
 
                 {loading && <p>Loading...</p>}
-                <div className="exercise-container">
+                <Grid2 container spacing={3} className="exercise-container">
                     {filteredExercises.slice(0, limit).map((exercise) => (
                         <Card
                             cardClass="exercise-card"
@@ -102,7 +103,7 @@ export default function ExerciseList() {
                             </div>
                         </Card>
                     ))}
-                </div>
+                </Grid2>
 
                 <Button
                     className="load-exercise-btn"
@@ -119,7 +120,7 @@ export default function ExerciseList() {
                         onClose={closeModal}
                     />
                 )}
-            </div>
+            </Container>
         </>
     );
 }
