@@ -162,7 +162,15 @@ export default function Navbar() {
                                 component={Link}
                                 to="/"
                                 value="/"
-                                sx={{ minWidth: 'auto' }}
+                                sx={{
+                                    '&:not(.Mui-selected)': {
+                                        color: '#dee2e6',
+                                    },
+                                    '&.Mui-selected': {
+                                        color: '#fa6f19',
+                                    },
+                                    minWidth: 'auto',
+                                }}
                             />
                             <BottomNavigationAction
                                 label="Exercises"
@@ -170,7 +178,15 @@ export default function Navbar() {
                                 component={Link}
                                 to="/exercisedatabase"
                                 value="/exercisedatabase"
-                                sx={{ minWidth: 'auto' }}
+                                sx={{
+                                    '&:not(.Mui-selected)': {
+                                        color: '#dee2e6',
+                                    },
+                                    '&.Mui-selected': {
+                                        color: '#fa6f19',
+                                    },
+                                    minWidth: 'auto',
+                                }}
                             />
                             <BottomNavigationAction
                                 label="Progress"
@@ -178,7 +194,15 @@ export default function Navbar() {
                                 component={Link}
                                 to="/progress"
                                 value="/progress"
-                                sx={{ minWidth: 'auto' }}
+                                sx={{
+                                    '&:not(.Mui-selected)': {
+                                        color: '#dee2e6',
+                                    },
+                                    '&.Mui-selected': {
+                                        color: '#fa6f19',
+                                    },
+                                    minWidth: 'auto',
+                                }}
                             />
                             <BottomNavigationAction
                                 label="Favourites"
@@ -186,7 +210,15 @@ export default function Navbar() {
                                 component={Link}
                                 to="/favourites"
                                 value="/favourites"
-                                sx={{ minWidth: 'auto' }}
+                                sx={{
+                                    '&:not(.Mui-selected)': {
+                                        color: '#dee2e6',
+                                    },
+                                    '&.Mui-selected': {
+                                        color: '#fa6f19',
+                                    },
+                                    minWidth: 'auto',
+                                }}
                             />
                             <BottomNavigationAction
                                 label="About"
@@ -194,7 +226,15 @@ export default function Navbar() {
                                 component={Link}
                                 to="/about"
                                 value="/about"
-                                sx={{ minWidth: 'auto' }}
+                                sx={{
+                                    '&:not(.Mui-selected)': {
+                                        color: '#dee2e6',
+                                    },
+                                    '&.Mui-selected': {
+                                        color: '#fa6f19',
+                                    },
+                                    minWidth: 'auto',
+                                }}
                             />
                         </BottomNavigation>
                     </div>

@@ -198,9 +198,13 @@
         padding: 0.8rem 1.5rem;
         font-size: 0.9rem;
     }
+
+    .banner-card {
+        height: 450px;
+    }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 620px) {
     .hero-title {
         font-size: 2.5rem;
         -webkit-text-stroke: 1px $brand-orange;
@@ -209,4 +213,17 @@
     .hero-desc {
         font-size: 1rem;
     }
+
+    .banner-card {
+        height: 400px;
+    }
+}
+
+// --- SWIPER ---
+.swiper-pagination-bullet {
+    background: #dee2e6 !important;
+}
+
+.swiper-pagination-bullet-active {
+    background: $primary-btn-hover !important;
 }
