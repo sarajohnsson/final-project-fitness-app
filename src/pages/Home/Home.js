@@ -82,7 +82,7 @@ export default function Home() {
                             anytime, anywhere. Start today and build the best
                             version of yourself!
                         </p>
-                        <NavLink className="hero-btn" to="/">
+                        <NavLink className="hero-btn" to="/login">
                             Get fit now
                         </NavLink>
                     </Box>

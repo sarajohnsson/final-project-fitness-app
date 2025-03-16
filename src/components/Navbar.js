@@ -74,7 +74,7 @@ export default function Navbar() {
             <Container maxWidth="lg">
                 {isMediumScreen && (
                     <Container maxWidth="m" className="logo-container">
-                        <Link to="/">
+                        <Link size="small" to="/">
                             <img className="logo-img" src={logo} alt="logo" />
                         </Link>
                         {isLoggedIn ? (
@@ -101,7 +101,7 @@ export default function Navbar() {
                 )}
                 {!isMediumScreen ? (
                     <nav className="navigation">
-                        <Link to="/">
+                        <Link size="small" to="/">
                             <img className="logo-img" src={logo} alt="logo" />
                         </Link>
 

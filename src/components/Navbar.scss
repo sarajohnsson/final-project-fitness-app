@@ -44,6 +44,16 @@
     .nav-link {
         padding: 8px 10px;
         border-radius: 5px;
+        border-bottom: 2px solid $primary-btn-default;
+
+        &:hover,
+        &:focus {
+            border: 1px solid $primary-btn-hover;
+        }
+
+        &:active {
+            border: 1px solid $primary-btn-pressed;
+        }
     }
 }
 
