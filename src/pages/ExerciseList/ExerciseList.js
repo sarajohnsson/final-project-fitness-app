@@ -7,7 +7,7 @@ import './ExerciseList.scss';
 import Modal, { useModal } from '../../components/ui/Modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDumbbell } from '@fortawesome/free-solid-svg-icons/faDumbbell';
-import { Container, Grid2 } from '@mui/material';
+import { Container, Grid2, TextField } from '@mui/material';
 
 export default function ExerciseList() {
     const url = '/data/exercises.json';
@@ -61,14 +61,17 @@ export default function ExerciseList() {
     return (
         <>
             <Container maxWidth="lg" className="exercise-wrapper">
-                <div className="exercise-input-group">
-                    <Input
+                <label className="exercise-input-group">
+                    <TextField
+                        id="outlined-basic"
+                        label="Search exercise"
+                        variant="outlined"
                         type="text"
                         className="exercise-input"
-                        placeholder="Search exercise"
                         value={searchInput}
-                        onChangeFunction={setSearchInput}
+                        onChange={(e) => setSearchInput(e.target.value)}
                     />
+
                     <Button
                         className="exercise-input-btn"
                         title="Search"
@@ -78,7 +81,7 @@ export default function ExerciseList() {
                             icon={faDumbbell}
                         />
                     </Button>
-                </div>
+                </label>
 
                 {loading && <p>Loading...</p>}
                 <Grid2 container spacing={3} className="exercise-container">

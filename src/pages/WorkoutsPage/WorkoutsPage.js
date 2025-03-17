@@ -25,31 +25,6 @@ export default function WorkoutsPage() {
     const [isWorkoutModalOpen, setIsWorkoutModalOpen] = useState(false);
     const [isExerciseModalOpen, setIsExerciseModalOpen] = useState(false);
 
-    // const addFields = async (workoutId, exerciseIndex) => {
-    //     const exerciseRef = doc(db, 'workouts', workoutId);
-    //     const workoutDoc = await getDoc(exerciseRef);
-    //     if (!workoutDoc.exists()) {
-    //         throw new Error('Workout not found');
-    //     }
-    //     const exercises = workoutDoc.data().exercises || [];
-
-    //     if (!exercises[exerciseIndex]) {
-    //         throw new Error('No exercises found in the workout');
-    //     }
-
-    //     await updateDoc(exerciseRef, {
-    //         exercises: arrayUnion({
-    //             ...exercises[exerciseIndex],
-    //             sets: [
-    //                 ...(exercises[exerciseIndex].sets || []),
-    //                 { reps: '', weight: '' },
-    //             ],
-    //         }),
-    //     });
-
-    //     refreshWorkouts();
-    // };
-
     const deleteWorkouts = async (workout) => {
         const deleteWorkoutsRef = doc(db, 'workouts', workout.id);
         await deleteDoc(deleteWorkoutsRef);
@@ -184,41 +159,29 @@ export default function WorkoutsPage() {
                                                 />
                                             </Button>
                                         </div>
-                                        <div className="exercise-table-header">
-                                            <ul>
-                                                <li className="exercise-header-item">
-                                                    Sets
-                                                </li>
-                                                <li className="exercise-header-item">
-                                                    Reps
-                                                </li>
-                                                <li className="exercise-header-item">
-                                                    Weight
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        {/* Rendered sets */}
-                                        <div className="exercise-table-body">
-                                            <ul>
-                                                <li className="exercise-body-item">
-                                                    {`${exercise.sets} sets`}
-                                                </li>
-                                                <li className="exercise-body-item">
-                                                    {`${exercise.reps} reps`}
-                                                </li>
-                                                <li className="exercise-body-item">
-                                                    {`${exercise.weight} kg`}
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <Button
-                                            className="add-btn disabled sm"
-                                            title="Add Set">
-                                            <FontAwesomeIcon
-                                                className="add-icon disabled"
-                                                icon={faCirclePlus}
-                                            />
-                                        </Button>
+                                        {exercise.reps.map((rep, repIndex) => (
+                                            <div
+                                                key={repIndex}
+                                                className="exercise-table-header">
+                                                <ul>
+                                                    <li className="exercise-header-item">
+                                                        Set {repIndex + 1}
+                                                    </li>
+                                                    <li className="exercise-header-item">
+                                                        {' '}
+                                                        {rep} reps
+                                                    </li>
+                                                    <li className="exercise-header-item">
+                                                        {
+                                                            exercise.weight[
+                                                                repIndex
+                                                            ]
+                                                        }{' '}
+                                                        kg
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        ))}
                                     </div>
                                 ))}
                         </div>

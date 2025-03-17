@@ -64,11 +64,13 @@
             width: 100%;
             justify-content: space-between;
             align-items: center;
+            margin-bottom: 20px;
         }
 
         .custom-exercise-title {
             font-family: 'Poppins', sans-serif;
-            font-size: 24px;
+            font-size: 1.5rem;
+            text-transform: uppercase;
             font-weight: 600;
             color: $primary-white;
         }
@@ -76,13 +78,14 @@
 }
 
 .exercise-table-header {
-    margin-bottom: 20px;
+    margin-bottom: 5px;
     width: 100%;
 
     ul {
         display: flex;
         justify-content: space-between;
         align-items: center;
+        border-bottom: 1px solid $secondary-light;
     }
 
     li {
@@ -90,31 +93,9 @@
         display: flex;
         align-items: center;
         font-family: 'Poppins', sans-serif;
-        font-size: 24px;
-        font-weight: 500;
+        font-size: 1.25rem;
         color: $primary-white;
-    }
-}
-
-.exercise-table-body {
-    width: 100%;
-    margin-bottom: 20px;
-
-    ul {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        gap: 20px;
-    }
-
-    li {
-        background-color: $primary-white;
-        display: flex;
-        width: 100%;
-        font-size: 20px;
-        color: $primary-black;
-        padding: 10px;
-        border-radius: 10px;
+        margin-bottom: 5px;
     }
 }
 

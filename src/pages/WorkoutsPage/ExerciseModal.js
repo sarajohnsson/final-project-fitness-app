@@ -1,5 +1,5 @@
 import { arrayUnion, doc, updateDoc, getDoc } from 'firebase/firestore';
-import { useForm } from 'react-hook-form';
+import { useForm, useWatch } from 'react-hook-form';
 import './CustomModal.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark, faBookmark } from '@fortawesome/free-solid-svg-icons';
@@ -12,7 +12,16 @@ export default function ExerciseModal({
     workoutId,
     refreshWorkouts,
 }) {
+    const { register, handleSubmit, reset, control } = useForm({
+        mode: 'onChange',
+        defaultValues: { sets: 1, reps: [], weight: [] },
+    });
+
+    const setsCount = useWatch({ control, name: 'sets' }) || 1;
+
     const addExercise = async (data) => {
+        console.log('Form submitted with data:', data);
+
         if (!workoutId) {
             console.error('No workout ID provided');
             return;
@@ -20,9 +29,9 @@ export default function ExerciseModal({
 
         const newExercise = {
             name: data.exerciseName,
-            sets: parseInt(data.sets),
-            reps: parseInt(data.reps),
-            weight: parseFloat(data.weight),
+            sets: parseInt(data.sets) || 1,
+            reps: data.reps.map((rep) => parseInt(rep) || 0),
+            weight: data.weight.map((kg) => parseFloat(kg) || 0),
         };
 
         try {
@@ -39,10 +48,6 @@ export default function ExerciseModal({
         }
     };
 
-    const { register, handleSubmit, reset } = useForm({
-        mode: 'onChange',
-    });
-
     return (
         <>
             {isOpen && (
@@ -57,61 +62,62 @@ export default function ExerciseModal({
                             maxWidth="lg"
                             className="add-exercise-container">
                             <div className="add-exercise-row">
-                                <label className="add-exercise-label">
-                                    <TextField
-                                        id="filled-size-small"
-                                        label="Exercise name"
-                                        variant="filled"
-                                        size="small"
-                                        {...register('exerciseName', {
-                                            required:
-                                                'Exercise name is required',
-                                        })}
-                                        type="text"
-                                        className="add-exercise-modal-input"
-                                    />
-                                </label>
+                                <TextField
+                                    id="filled-size-small"
+                                    label="Exercise name"
+                                    variant="filled"
+                                    size="small"
+                                    fullWidth
+                                    {...register('exerciseName', {
+                                        required: 'Exercise name is required',
+                                    })}
+                                    type="text"
+                                    className="add-exercise-modal-input"
+                                />
                             </div>
                             <div className="add-exercise-row">
-                                <label className="add-exercise-label">
-                                    <TextField
-                                        id="filled-size-small"
-                                        label="Sets"
-                                        variant="filled"
-                                        size="small"
-                                        {...register('sets')}
-                                        type="number"
-                                        className="add-exercise-modal-input"
-                                    />
-                                </label>
+                                <TextField
+                                    id="filled-size-small"
+                                    label="Sets"
+                                    variant="filled"
+                                    size="small"
+                                    fullWidth
+                                    {...register('sets')}
+                                    type="number"
+                                    className="add-exercise-modal-input"
+                                />
                             </div>
-                            <div className="add-exercise-row">
-                                <label className="add-exercise-label">
-                                    <TextField
-                                        id="filled-size-small"
-                                        label="Reps"
-                                        variant="filled"
-                                        size="small"
-                                        {...register('reps')}
-                                        type="number"
-                                        className="add-exercise-modal-input"
-                                    />
-                                </label>
-                            </div>
-                            <div className="add-exercise-row">
-                                <label className="add-exercise-label">
-                                    <TextField
-                                        id="filled-size-small"
-                                        label="Weight"
-                                        variant="filled"
-                                        size="small"
-                                        put
-                                        {...register('weight')}
-                                        type="number"
-                                        className="add-exercise-modal-input"
-                                    />
-                                </label>
-                            </div>
+                        </Container>
+                        <Container className="dynamic-exercise-module">
+                            {[...Array(Number(setsCount) || 1)].map(
+                                (_, index) => (
+                                    <div
+                                        key={index}
+                                        className="dynamic-exercise-row">
+                                        <TextField
+                                            id="filled-size-small"
+                                            label={`Reps (Set ${index + 1})`}
+                                            variant="filled"
+                                            size="small"
+                                            fullWidth
+                                            {...register(`reps.${index}`)}
+                                            type="number"
+                                            className="dynamic-exercise-input"
+                                        />
+
+                                        <TextField
+                                            id="filled-size-small"
+                                            label={`Weight (Set ${index + 1})`}
+                                            variant="filled"
+                                            size="small"
+                                            fullWidth
+                                            {...register(`weight.${index}`)}
+                                            type="number"
+                                            className="dynamic-exercise-input"
+                                        />
+                                    </div>
+                                )
+                            )}
                         </Container>
                         <button type="submit" className="add-form-btn">
                             Save exercise
