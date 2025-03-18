@@ -44,6 +44,7 @@
     .nav-link {
         padding: 8px 10px;
         border-radius: 5px;
+        border: 1px solid transparent;
         border-bottom: 2px solid $primary-btn-default;
 
         &:hover,

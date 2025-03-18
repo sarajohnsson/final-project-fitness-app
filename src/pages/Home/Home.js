@@ -10,16 +10,35 @@ import { Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
-
 import { auth } from '../../firebase/config';
+import { useDispatch, useSelector } from 'react-redux';
+import { setUser, selectUsers } from '../../store/usersSlice';
+import { useEffect } from 'react';
 
 export default function Home() {
+    // User credentials
+    const dispatch = useDispatch();
+    const user = useSelector(selectUsers);
+    const isLoggedIn = user?.currentUser;
+
     const theme = useTheme();
     const isMediumScreen = useMediaQuery(theme.breakpoints.down('md'));
 
+    useEffect(() => {
+        const unsubscribe = auth.onAuthStateChanged((user) => {
+            if (user) {
+                dispatch(setUser({ currentUser: user }));
+            } else {
+                dispatch(setUser(null));
+            }
+        });
+
+        return () => unsubscribe();
+    }, [dispatch]);
+
     return (
         <>
-            <section className="hero-section">
+            <section className="hero-section hero-overlay">
                 <Container maxWidth="lg" className="hero-container">
                     <Box
                         display="flex"
@@ -39,9 +58,17 @@ export default function Home() {
                             anytime, anywhere. Start today and build the best
                             version of yourself!
                         </p>
-                        <NavLink className="hero-btn" to="/login">
-                            Get fit now
-                        </NavLink>
+                        {isLoggedIn ? (
+                            <NavLink
+                                className="hero-btn"
+                                to="/exercisedatabase">
+                                Get fit now
+                            </NavLink>
+                        ) : (
+                            <NavLink className="hero-btn" to="/login">
+                                Get fit now
+                            </NavLink>
+                        )}
                     </Box>
                 </Container>
             </section>
@@ -76,6 +103,7 @@ export default function Home() {
                                     cardTextClass="banner-desc"
                                     image={cardImg1}
                                     useBackgroundImage={true}
+                                    useTilt={false}
                                     overlayClass="banner-gradient"
                                     contentClass="banner-content"
                                     to="/exercisedatabase"
@@ -90,6 +118,7 @@ export default function Home() {
                                     cardTextClass="banner-desc"
                                     image={cardImg2}
                                     useBackgroundImage={true}
+                                    useTilt={false}
                                     overlayClass="banner-gradient"
                                     contentClass="banner-content"
                                     to="/progress"
@@ -104,6 +133,7 @@ export default function Home() {
                                     cardTextClass="banner-desc"
                                     image={cardImg3}
                                     useBackgroundImage={true}
+                                    useTilt={false}
                                     overlayClass="banner-gradient"
                                     contentClass="banner-content"
                                     to="/favourites"

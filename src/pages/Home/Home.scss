@@ -12,6 +12,14 @@
     background-position: 100%;
 }
 
+.hero-overlay {
+    border-image-source: linear-gradient(
+        rgba(0, 0, 0, 0) 25%,
+        rgba(0, 0, 0, 0.75) 100%
+    );
+    border-image-slice: fill 1;
+}
+
 .hero-container {
     margin: 0 auto;
 }
@@ -78,7 +86,7 @@
 .banner {
     display: flex;
     min-height: 50vh;
-    background-color: $brand-orange;
+    @include linear-gradient($direction, $big-btn-default);
 }
 
 .banner-container {
@@ -96,12 +104,20 @@
     align-items: center;
     justify-content: flex-end;
 
+    filter: grayscale(1);
+    border-top: 1px solid rgba($color: #fff, $alpha: 0.5);
+    border-left: 1px solid rgba($color: #fff, $alpha: 0.5);
+
     height: 480px;
     width: 100%;
 
     overflow: hidden;
     border-radius: 15px;
-    box-shadow: inset 0 0 0.5px 1px hsla(0, 0%, 100%, 0.5);
+
+    &:hover {
+        transition: all 0.3s ease-in-out;
+        filter: grayscale(0);
+    }
 
     .banner-content {
         z-index: 1;
@@ -151,6 +167,14 @@
 }
 
 // --- SUBSECTION ---
+
+.subsection-overlay {
+    border-image-source: linear-gradient(
+        rgba(0, 0, 0, 0.75) 25%,
+        rgba(0, 0, 0, 0) 100%
+    );
+    border-image-slice: fill 1;
+}
 
 .subsection-container {
     margin: 0 auto;
@@ -202,6 +226,10 @@
     .banner-card {
         height: 450px;
     }
+
+    .subsection-desc {
+        font-size: 3rem;
+    }
 }
 
 @media (max-width: 620px) {
@@ -217,6 +245,17 @@
     .banner-card {
         height: 400px;
     }
+
+    .subsection-desc {
+        font-size: 2.5rem;
+        -webkit-text-stroke: 1px $primary-white;
+    }
+}
+
+@media (max-width: 420px) {
+    .subsection-desc {
+        font-size: 2rem;
+    }
 }
 
 // --- SWIPER ---
@@ -225,5 +264,5 @@
 }
 
 .swiper-pagination-bullet-active {
-    background: $primary-btn-hover !important;
+    background: $brand-orange !important;
 }

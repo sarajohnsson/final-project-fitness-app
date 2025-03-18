@@ -6,8 +6,6 @@ body {
 
 .exercise-wrapper {
     padding-top: 120px;
-    max-width: 1200px;
-    margin: 0 auto;
 }
 
 .exercise-container {
@@ -77,7 +75,10 @@ body {
     max-width: 350px;
     flex-grow: 1;
     border-radius: 15px;
-    box-shadow: inset 0 0 0.5px 1px hsla(0, 0%, 100%, 0.5);
+
+    box-shadow: 10px 10px 25px rgba($color: #000000, $alpha: 0.5);
+    border-top: 1px solid rgba($color: #fff, $alpha: 0.5);
+    border-left: 1px solid rgba($color: #fff, $alpha: 0.5);
 }
 
 .exercise-content {
@@ -177,6 +178,110 @@ body {
     }
 }
 
+.error-message {
+    font-size: 2rem;
+    font-weight: 500;
+    color: $primary-white;
+}
+
+// --- MODAL ---
+.ex-modal {
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.ex-modal-content {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-height: 80%;
+    max-width: 600px;
+    padding: 20px;
+    border-radius: 15px;
+    overflow-y: auto;
+
+    background: rgba($color: $primary-white, $alpha: 0.6);
+    box-shadow: 20px 20px 50px rgba($color: #000000, $alpha: 0.5);
+    border-top: 1px solid rgba($color: #fff, $alpha: 0.5);
+    border-left: 1px solid rgba($color: #fff, $alpha: 0.5);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+}
+
+.ex-modal-desc-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+
+    .ex-modal-desc-info {
+        color: $primary-black;
+
+        .ex-modal-title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+
+            @media (max-width: 620px) {
+                font-size: 1.25rem;
+            }
+        }
+
+        .ex-modal-text {
+            font-size: 1.25rem;
+            line-height: 32px;
+            text-align: left;
+
+            @media (max-width: 620px) {
+                font-size: 1rem;
+            }
+        }
+    }
+}
+
+.ex-modal-btn-container {
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    margin-bottom: 10px;
+
+    .ex-modal-btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.5rem;
+        color: $secondary-dark;
+        transition: all 0.3s ease-in-out;
+
+        &:hover,
+        &:focus {
+            color: $primary-btn-hover;
+        }
+
+        &:active {
+            color: $primary-btn-pressed;
+        }
+    }
+}
+
+.ex-modal-image {
+    max-height: 250px;
+    max-width: 250px;
+    height: auto;
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
+
 // --- MUI ---
 .exercise-input .MuiInputLabel-root {
     color: $brand-orange;
@@ -191,21 +296,17 @@ body {
     color: $primary-white;
 }
 
-.exercise-input .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline {
-    border-color: $secondary-light;
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
+.exercise-input .MuiFilledInput-root {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
 }
 
-.exercise-input
-    .MuiOutlinedInput-root.Mui-focused
-    .MuiOutlinedInput-notchedOutline {
-    border-color: $secondary-btn-disabled;
-    border-width: 1.5px;
-}
-
-.exercise-input .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
-    border-color: $secondary-btn-disabled;
+.exercise-input .MuiFilledInput-root::before,
+.exercise-input .MuiFilledInput-root::after {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
 }

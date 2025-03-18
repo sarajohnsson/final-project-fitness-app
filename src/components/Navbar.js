@@ -1,13 +1,11 @@
 import { NavLink, Link } from 'react-router-dom';
 import { signOut } from 'firebase/auth';
 import { auth } from '../firebase/config';
-import { useDispatch } from 'react-redux';
-import { setUser } from '../store/usersSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { setUser, selectUsers } from '../store/usersSlice';
 import logo from '../assets/gym-logo.png';
 import './Navbar.scss';
 import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { selectUsers } from '../store/usersSlice';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faArrowRightFromBracket,
@@ -27,9 +25,9 @@ import {
 } from '@mui/material';
 
 export default function Navbar() {
-    const dispatch = useDispatch();
     const [scrolled, setScrolled] = useState(false);
     // User credentials
+    const dispatch = useDispatch();
     const user = useSelector(selectUsers);
     const isLoggedIn = user?.currentUser;
     // Responsive navigation
@@ -38,6 +36,14 @@ export default function Navbar() {
     const isMediumScreen = useMediaQuery(theme.breakpoints.down('md'));
 
     useEffect(() => {
+        const unsubscribe = auth.onAuthStateChanged((user) => {
+            if (user) {
+                dispatch(setUser({ currentUser: user }));
+            } else {
+                dispatch(setUser(null));
+            }
+        });
+
         if (!isMediumScreen) {
             const handleScroll = () => {
                 if (window.scrollY > 50) {
@@ -50,7 +56,9 @@ export default function Navbar() {
             window.addEventListener('scroll', handleScroll);
             return () => window.removeEventListener('scroll', handleScroll);
         }
-    }, [isMediumScreen]);
+
+        return () => unsubscribe();
+    }, [isMediumScreen, dispatch]);
 
     function handleSignout() {
         if (window.confirm('Are you sure you want to log out')) {

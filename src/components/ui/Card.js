@@ -1,4 +1,5 @@
 import { NavLink } from 'react-router-dom';
+import Tilt from 'react-vanilla-tilt';
 
 export default function Card({
     title,
@@ -16,6 +17,7 @@ export default function Card({
     onButtonClick,
     children,
     to,
+    useTilt = true,
 }) {
     const cardStyle = useBackgroundImage
         ? {
@@ -25,32 +27,42 @@ export default function Card({
           }
         : {};
 
-    return (
-        <NavLink to={to} className={`card-link ${cardClass}`}>
-            <div className={cardClass} style={cardStyle}>
-                {useBackgroundImage && <div className={overlayClass}></div>}
-                {!useBackgroundImage && image && (
-                    <img
-                        className={imageClass}
-                        src={image}
-                        alt={title}
-                        loading="lazy"
-                    />
-                )}
+    const CardContent = (
+        <>
+            {useBackgroundImage && <div className={overlayClass}></div>}
+            {!useBackgroundImage && image && (
+                <img
+                    className={imageClass}
+                    src={image}
+                    alt={title}
+                    loading="lazy"
+                />
+            )}
 
-                <div className={contentClass}>
-                    <h2 className={cardTitleClass}>{title}</h2>
-                    <p className={cardTextClass}>{description}</p>
-                    {children}
-                    {buttonText && (
-                        <button
-                            className={cardBtnClass}
-                            onClick={onButtonClick}>
-                            {buttonText}
-                        </button>
-                    )}
-                </div>
+            <div className={contentClass}>
+                <h2 className={cardTitleClass}>{title}</h2>
+                <p className={cardTextClass}>{description}</p>
+                {children}
+                {buttonText && (
+                    <button className={cardBtnClass} onClick={onButtonClick}>
+                        {buttonText}
+                    </button>
+                )}
             </div>
+        </>
+    );
+
+    const Component = useTilt ? Tilt : 'div';
+
+    return to ? (
+        <NavLink to={to} className={`card-link ${cardClass}`}>
+            <Component className={cardClass} style={cardStyle}>
+                {CardContent}
+            </Component>
         </NavLink>
+    ) : (
+        <Component className={cardClass} style={cardStyle}>
+            {CardContent}
+        </Component>
     );
 }

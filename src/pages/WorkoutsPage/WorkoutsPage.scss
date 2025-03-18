@@ -99,16 +99,13 @@
     }
 }
 
-.add-btn {
-    display: block;
-    margin-left: 0;
-    margin-right: auto;
-}
-
 // --- BUTTONS ---
 
 .remove-btn,
 .add-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-size: 1rem;
     color: $primary-white;
     font-weight: 600;

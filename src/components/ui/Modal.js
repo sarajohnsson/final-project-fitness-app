@@ -28,30 +28,37 @@ export default function Modal({
     modalClass = 'modal',
     overlayClass = 'modal-overlay',
     modalContentClass = 'modal-content',
+    descContainer,
+    descInfo,
     imageClass = 'modal-image',
     modalTitle = 'modal-title',
     modalText = 'modal-text',
+    modalBtnContainerClass = 'modal-btn-container',
     modalBtnClass = 'modal-btn',
 }) {
     return (
         <div className={modalClass}>
             <div className={overlayClass} onClick={onClose}></div>
             <div className={modalContentClass}>
-                <button className={modalBtnClass} onClick={onClose}>
-                    <div className="modal-btn-container">
+                <div className={modalBtnContainerClass}>
+                    <button className={modalBtnClass} onClick={onClose}>
                         <FontAwesomeIcon icon={faXmark} />
+                    </button>
+                </div>
+                <div className={descContainer}>
+                    {image && (
+                        <img
+                            className={imageClass}
+                            src={image}
+                            alt={title}
+                            loading="lazy"
+                        />
+                    )}
+                    <div className={descInfo}>
+                        <h3 className={modalTitle}>{title}</h3>
+                        <p className={modalText}>{description}</p>
                     </div>
-                </button>
-                {image && (
-                    <img
-                        className={imageClass}
-                        src={image}
-                        alt={title}
-                        loading="lazy"
-                    />
-                )}
-                <h3 className={modalTitle}>{title}</h3>
-                <p className={modalText}>{description}</p>
+                </div>
             </div>
         </div>
     );

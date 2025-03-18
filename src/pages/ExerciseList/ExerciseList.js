@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import UseFetch from '../../hooks/UseFetch';
 import Card from '../../components/ui/Card';
 import Button from '../../components/ui/Button';
-import Input from '../../components/ui/Input';
 import './ExerciseList.scss';
 import Modal, { useModal } from '../../components/ui/Modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -63,9 +62,9 @@ export default function ExerciseList() {
             <Container maxWidth="lg" className="exercise-wrapper">
                 <label className="exercise-input-group">
                     <TextField
-                        id="outlined-basic"
+                        id="filled-size-small"
+                        variant="filled"
                         label="Search exercise"
-                        variant="outlined"
                         type="text"
                         className="exercise-input"
                         value={searchInput}
@@ -99,6 +98,7 @@ export default function ExerciseList() {
                             cardTextClass="exercise-desc"
                             cardBtnClass="exercise-btn"
                             buttonText="More info"
+                            useTilt={true}
                             onButtonClick={() => handleButtonClick(exercise)}>
                             <div className="tag-container">
                                 <p className="tag-text">{exercise.category}</p>
@@ -108,18 +108,44 @@ export default function ExerciseList() {
                     ))}
                 </Grid2>
 
-                <Button
-                    className="load-exercise-btn"
-                    title="Load more"
-                    onClick={() => setLimit(limit + 5)}
-                    disabled={loading}
-                />
+                {filteredExercises.length <= 0 ? (
+                    <p className="error-message">
+                        No exercises found by that name!
+                    </p>
+                ) : (
+                    <Button
+                        className="load-exercise-btn"
+                        title="Load more"
+                        onClick={() => setLimit(limit + 5)}
+                        disabled={loading}
+                    />
+                )}
 
                 {isOpen && content && (
                     <Modal
                         title={content.name}
-                        description={`${content.instructions.join(' ')}`}
+                        description={content.instructions.map(
+                            (sentence, index) => (
+                                <React.Fragment key={index}>
+                                    {sentence}
+                                    {index <
+                                        content.instructions.length - 1 && (
+                                        <br />
+                                    )}
+                                </React.Fragment>
+                            )
+                        )}
                         image={`/assets/exercises/${content.images[0]}`}
+                        modalClass="ex-modal"
+                        overlayClass="ex-modal-overlay"
+                        modalContentClass="ex-modal-content"
+                        descContainer="ex-modal-desc-container"
+                        descInfo="ex-modal-desc-info"
+                        imageClass="ex-modal-image"
+                        modalTitle="ex-modal-title"
+                        modalText="ex-modal-text"
+                        modalBtnContainerClass="ex-modal-btn-container"
+                        modalBtnClass="ex-modal-btn"
                         onClose={closeModal}
                     />
                 )}

@@ -63,8 +63,10 @@ export default function ExerciseModal({
                             className="add-exercise-container">
                             <div className="add-exercise-row">
                                 <TextField
-                                    id="filled-size-small"
+                                    error
+                                    id="filled-error-helper-text"
                                     label="Exercise name"
+                                    helperText="Exercise name is required."
                                     variant="filled"
                                     size="small"
                                     fullWidth

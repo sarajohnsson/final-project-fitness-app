@@ -2,41 +2,32 @@
 
 // --- EXERCISE ---
 
-.exercise-modal {
-    padding: 20px;
-    background: linear-gradient($direction, $big-btn-default);
-    border-radius: 15px;
-    margin-bottom: 20px;
-    width: 100%;
-}
-
+.exercise-modal,
 .workout-modal {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    border: solid 1px $brand-orange;
     padding: 20px;
-    background: linear-gradient($direction, $big-btn-default);
     border-radius: 15px;
     margin-bottom: 20px;
 }
 
-.workout-container {
-    .workout-row {
-        display: flex;
-        gap: 40px;
-        align-items: center;
-    }
+.add-workout-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 
-    .workout-label {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 10px;
+    .workout-modal-input {
+        width: 100%;
         font-size: 1.5rem;
         font-weight: 700;
         color: $primary-white;
-        flex-grow: 1;
-
-        .workout-modal-input {
-            width: 100%;
-        }
+        margin-bottom: 10px;
     }
 }
 
@@ -76,21 +67,24 @@
     margin-right: 0;
     font-size: 2rem;
     margin-bottom: 10px;
-    color: $secondary-btn-default;
+    color: $primary-btn-default;
     transition: all 0.3s ease-in-out;
 
     &:hover,
     &:focus {
-        color: $secondary-btn-hover;
+        color: $primary-btn-hover;
     }
 
     &:active {
-        color: $secondary-btn-pressed;
+        color: $primary-btn-pressed;
     }
 }
 
 .add-form-btn {
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     color: $primary-white;
     background-color: $success;
     font-size: 1.25rem;
@@ -111,11 +105,23 @@
 }
 
 .save-icon {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     margin-left: 10px;
 }
 
 // --- MUI ---
+.add-exercise-modal-input .MuiInputLabel-root,
+.dynamic-exercise-input .MuiInputLabel-root,
+.workout-modal-input .MuiInputLabel-root {
+    color: $brand-orange;
+}
+
+.add-exercise-modal-input .MuiInputLabel-root.Mui-focused,
+.dynamic-exercise-input .MuiInputLabel-root.Mui-focused,
+.workout-modal-input .MuiInputLabel-root {
+    color: $brand-orange;
+}
+
 .add-exercise-modal-input .MuiFilledInput-root,
 .dynamic-exercise-input .MuiFilledInput-root,
 .workout-modal-input .MuiFilledInput-root {
