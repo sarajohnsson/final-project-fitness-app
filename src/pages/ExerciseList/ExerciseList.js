@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import UseFetch from '../../hooks/UseFetch';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+    addToFavorites,
+    removeFromFavorites,
+} from '../../store/watchlistSlice';
 import Card from '../../components/ui/Card';
 import Button from '../../components/ui/Button';
 import './ExerciseList.scss';
 import Modal, { useModal } from '../../components/ui/Modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faDumbbell } from '@fortawesome/free-solid-svg-icons/faDumbbell';
+import { faDumbbell, faHeart } from '@fortawesome/free-solid-svg-icons';
 import { Container, Grid2, TextField } from '@mui/material';
 
 export default function ExerciseList() {
@@ -16,6 +21,22 @@ export default function ExerciseList() {
     const [filteredExercises, setFilteredExercises] = useState([]);
     const [randomExercises, setRandomExercises] = useState([]);
     const { data, loading, error } = UseFetch(url);
+
+    // Favorite exercise function
+    const dispatch = useDispatch();
+    const favorites = useSelector((state) => state.watchlist.favorites);
+
+    const handleAddToFavorites = (item) => {
+        dispatch(addToFavorites(item));
+    };
+
+    const handleRemoveFavorites = (item) => {
+        dispatch(removeFromFavorites(item));
+    };
+
+    const isFavorite = (item) => {
+        return favorites.some((favorite) => favorite.id === item.id);
+    };
 
     // Function get random exercises
     function getRandomExercise(exercises, count) {
@@ -100,9 +121,29 @@ export default function ExerciseList() {
                             buttonText="More info"
                             useTilt={true}
                             onButtonClick={() => handleButtonClick(exercise)}>
-                            <div className="tag-container">
-                                <p className="tag-text">{exercise.category}</p>
-                                <p className="tag-text">{exercise.level}</p>
+                            <div className="control">
+                                <div className="tag-container">
+                                    <p className="tag-text">
+                                        {exercise.category}
+                                    </p>
+                                    <p className="tag-text">{exercise.level}</p>
+                                </div>
+                                <button
+                                    className="fav-btn"
+                                    onClick={() =>
+                                        isFavorite(exercise)
+                                            ? handleRemoveFavorites(exercise)
+                                            : handleAddToFavorites(exercise)
+                                    }>
+                                    <FontAwesomeIcon
+                                        icon={faHeart}
+                                        style={{
+                                            color: isFavorite(exercise)
+                                                ? 'red'
+                                                : 'white',
+                                        }}
+                                    />
+                                </button>
                             </div>
                         </Card>
                     ))}

@@ -27,7 +27,11 @@ export default function Home() {
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged((user) => {
             if (user) {
-                dispatch(setUser({ currentUser: user }));
+                const userData = {
+                    uid: user.uid,
+                    email: user.email,
+                };
+                dispatch(setUser(userData));
             } else {
                 dispatch(setUser(null));
             }

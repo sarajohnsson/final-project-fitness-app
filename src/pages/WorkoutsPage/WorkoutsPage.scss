@@ -30,6 +30,7 @@
 
     .workout-title {
         color: $primary-white;
+        text-transform: uppercase;
         font-size: 2rem;
         font-weight: 700;
     }
@@ -70,7 +71,7 @@
         .custom-exercise-title {
             font-family: 'Poppins', sans-serif;
             font-size: 1.5rem;
-            text-transform: uppercase;
+            text-transform: capitalize;
             font-weight: 600;
             color: $primary-white;
         }

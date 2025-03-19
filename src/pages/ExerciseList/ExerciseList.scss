@@ -8,15 +8,6 @@ body {
     padding-top: 120px;
 }
 
-.exercise-container {
-    display: flex;
-    justify-content: center;
-    align-items: stretch;
-    gap: 20px;
-    flex-wrap: wrap;
-    margin-bottom: 40px;
-}
-
 .title {
     color: $primary-white;
     text-transform: uppercase;
@@ -29,39 +20,48 @@ body {
     align-items: center;
     width: 100%;
     margin-bottom: 40px;
+
+    .exercise-input {
+        width: 100%;
+    }
+
+    .exercise-input-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 18px 15px;
+        text-transform: uppercase;
+        gap: 10px;
+        color: $primary-white;
+        background-color: $primary-btn-default;
+        font-size: 1rem;
+        font-weight: 600;
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+        transition: all 0.3s ease-in-out;
+
+        &:hover,
+        &:focus {
+            background-color: $primary-btn-hover;
+        }
+
+        &:active {
+            background-color: $primary-btn-pressed;
+        }
+    }
+
+    .db-icon {
+        color: $primary-black;
+    }
 }
 
-.exercise-input {
-    width: 100%;
-}
-
-.exercise-input-btn {
+.exercise-container {
     display: flex;
-    align-items: center;
     justify-content: center;
-    padding: 18px 15px;
-    text-transform: uppercase;
-    gap: 10px;
-    color: $primary-white;
-    background-color: $primary-btn-default;
-    font-size: 1rem;
-    font-weight: 600;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
-    transition: all 0.3s ease-in-out;
-
-    &:hover,
-    &:focus {
-        background-color: $primary-btn-hover;
-    }
-
-    &:active {
-        background-color: $primary-btn-pressed;
-    }
-}
-
-.db-icon {
-    color: $primary-black;
+    align-items: stretch;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
 }
 
 .exercise-card {
@@ -79,81 +79,98 @@ body {
     box-shadow: 10px 10px 25px rgba($color: #000000, $alpha: 0.5);
     border-top: 1px solid rgba($color: #fff, $alpha: 0.5);
     border-left: 1px solid rgba($color: #fff, $alpha: 0.5);
-}
 
-.exercise-content {
-    color: $primary-white;
-    text-align: left;
-    font-size: 24px;
-    line-height: 28px;
-    z-index: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: flex-start;
-    padding: 20px;
-    width: 100%;
-    height: 100%;
-}
-
-.tag-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 10px;
-}
-
-.tag-text {
-    font-size: 0.5rem;
-    text-transform: uppercase;
-    color: $primary-black;
-    background-color: $primary-white;
-    border-radius: 4px;
-    padding: 5px;
-    line-height: 1;
-}
-
-.card-gradient {
-    position: absolute;
-    inset: 0;
-    background: rgb(0, 0, 0);
-    background: linear-gradient(
-        0deg,
-        rgba(0, 0, 0, 1) 25%,
-        rgba(0, 0, 0, 0) 100%
-    );
-}
-
-.exercise-title {
-    font-family: 'Poppins', sans-serif;
-    font-size: 1.25rem;
-    text-transform: uppercase;
-    text-shadow: 0 0 4px rgba($color: $primary-black, $alpha: 0.5);
-}
-
-.exercise-desc {
-    font-family: 'Montserrat', sans-serif;
-    text-transform: capitalize;
-    font-size: 0.75rem;
-}
-
-.exercise-btn {
-    background-color: $primary-btn-default;
-    font-size: 1rem;
-    font-weight: 600;
-    line-height: 1;
-    padding: 10px;
-    border-radius: 50px;
-
-    &:hover,
-    &:focus {
-        transition: all 0.3s ease-in-out;
-        background-color: $primary-btn-hover;
+    .exercise-content {
+        color: $primary-white;
+        text-align: left;
+        font-size: 24px;
+        line-height: 28px;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: flex-start;
+        padding: 20px;
+        width: 100%;
+        height: 100%;
     }
 
-    &:active {
-        background-color: $primary-btn-pressed;
+    .card-gradient {
+        position: absolute;
+        inset: 0;
+        background: rgb(0, 0, 0);
+        background: linear-gradient(
+            0deg,
+            rgba(0, 0, 0, 1) 25%,
+            rgba(0, 0, 0, 0) 100%
+        );
+    }
+
+    .exercise-title {
+        font-family: 'Poppins', sans-serif;
+        font-size: 1.25rem;
+        text-transform: uppercase;
+        text-shadow: 0 0 4px rgba($color: $primary-black, $alpha: 0.5);
+    }
+
+    .exercise-desc {
+        font-family: 'Montserrat', sans-serif;
+        text-transform: capitalize;
+        font-size: 0.75rem;
+    }
+
+    .exercise-btn {
+        background-color: $primary-btn-default;
+        font-size: 1rem;
+        font-weight: 600;
+        line-height: 1;
+        padding: 10px;
+        border-radius: 50px;
+
+        &:hover,
+        &:focus {
+            transition: all 0.3s ease-in-out;
+            background-color: $primary-btn-hover;
+        }
+
+        &:active {
+            background-color: $primary-btn-pressed;
+        }
+    }
+}
+
+.control {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 10px;
+
+    .tag-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+
+        .tag-text {
+            font-size: 0.5rem;
+            text-transform: uppercase;
+            color: $primary-black;
+            background-color: $primary-white;
+            border-radius: 4px;
+            padding: 5px;
+            line-height: 1;
+        }
+    }
+
+    .fav-btn {
+        color: $primary-white;
+        transition: all 0.3s ease-in-out;
+
+        &:hover,
+        &:focus {
+            scale: 1.2;
+        }
     }
 }
 
@@ -204,17 +221,17 @@ body {
     transform: translate(-50%, -50%);
     width: 80%;
     max-height: 80%;
-    max-width: 600px;
+    max-width: 800px;
     padding: 20px;
     border-radius: 15px;
     overflow-y: auto;
 
-    background: rgba($color: $primary-white, $alpha: 0.6);
+    background: rgba($color: $primary-white, $alpha: 0.1);
     box-shadow: 20px 20px 50px rgba($color: #000000, $alpha: 0.5);
     border-top: 1px solid rgba($color: #fff, $alpha: 0.5);
     border-left: 1px solid rgba($color: #fff, $alpha: 0.5);
-    -webkit-backdrop-filter: blur(5px);
-    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
 }
 
 .ex-modal-desc-container {
@@ -225,7 +242,7 @@ body {
     gap: 20px;
 
     .ex-modal-desc-info {
-        color: $primary-black;
+        color: $primary-white;
 
         .ex-modal-title {
             font-size: 1.5rem;
@@ -260,7 +277,7 @@ body {
         justify-content: center;
         align-items: center;
         font-size: 1.5rem;
-        color: $secondary-dark;
+        color: $primary-white;
         transition: all 0.3s ease-in-out;
 
         &:hover,

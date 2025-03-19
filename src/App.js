@@ -1,11 +1,12 @@
 import './App.css';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import DefaultLayout from '../src/pages/layouts/DefaultLayout';
 import Home from '../src/pages/Home/Home';
 import ExerciseList from './pages/ExerciseList/ExerciseList';
 import WorkoutsPage from './pages/WorkoutsPage/WorkoutsPage';
 import LoginPage from './pages/LoginPage/LoginPage';
+import WatchlistPage from './pages/WatchlistPage/WatchlistPage';
 import { selectUsers } from './store/usersSlice';
 
 function App() {
@@ -29,10 +30,10 @@ function App() {
                                 path="/progress"
                                 element={<WorkoutsPage />}
                             />
-                            {/* <Route
+                            <Route
                                 path="/favourites"
-                                element={<FavouritesPage />}
-                            /> */}
+                                element={<WatchlistPage />}
+                            />
                         </>
                     ) : (
                         <>
@@ -40,10 +41,10 @@ function App() {
                                 path="progress"
                                 element={<Navigate to="/login" />}
                             />
-                            {/* <Route
-                                path="favourites"
-                                element={<Navigate to="/login" />}
-                            /> */}
+                            <Route
+                                path="/favourites"
+                                element={<WatchlistPage to="login" />}
+                            />
                         </>
                     )}
                     <Route path="*" element={<Navigate to="/" />} />

@@ -84,7 +84,14 @@ export default function ExerciseModal({
                                     variant="filled"
                                     size="small"
                                     fullWidth
-                                    {...register('sets')}
+                                    // {...register('sets') }
+                                    {...register(`sets`, {
+                                        valueAsNumber: true,
+                                        min: { value: 0 },
+                                    })}
+                                    inputProps={{
+                                        min: 0,
+                                    }}
                                     type="number"
                                     className="add-exercise-modal-input"
                                 />
@@ -102,7 +109,13 @@ export default function ExerciseModal({
                                             variant="filled"
                                             size="small"
                                             fullWidth
-                                            {...register(`reps.${index}`)}
+                                            {...register(`reps.${index}`, {
+                                                valueAsNumber: true,
+                                                min: { value: 0 },
+                                            })}
+                                            inputProps={{
+                                                min: 0,
+                                            }}
                                             type="number"
                                             className="dynamic-exercise-input"
                                         />
@@ -113,7 +126,13 @@ export default function ExerciseModal({
                                             variant="filled"
                                             size="small"
                                             fullWidth
-                                            {...register(`weight.${index}`)}
+                                            {...register(`weight.${index}`, {
+                                                valueAsNumber: true,
+                                                min: { value: 0 },
+                                            })}
+                                            inputProps={{
+                                                min: 0,
+                                            }}
                                             type="number"
                                             className="dynamic-exercise-input"
                                         />
