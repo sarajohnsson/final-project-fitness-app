@@ -130,7 +130,7 @@ export default function Navbar() {
                                 <NavLink className="nav-link" to="/progress">
                                     Progress
                                 </NavLink>
-                                <NavLink className="nav-link" to="/favourites">
+                                <NavLink className="nav-link" to="/favorites">
                                     Favourites
                                 </NavLink>
                                 <NavLink className="nav-link" to="/about">
@@ -217,11 +217,11 @@ export default function Navbar() {
                                 }}
                             />
                             <BottomNavigationAction
-                                label="Favourites"
+                                label="Favorites"
                                 icon=<FontAwesomeIcon icon={faHeart} />
                                 component={Link}
-                                to="/favourites"
-                                value="/favourites"
+                                to="/favorites"
+                                value="/favorites"
                                 sx={{
                                     '&:not(.Mui-selected)': {
                                         color: '#dee2e6',

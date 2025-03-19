@@ -31,7 +31,7 @@ function App() {
                                 element={<WorkoutsPage />}
                             />
                             <Route
-                                path="/favourites"
+                                path="/favorites"
                                 element={<WatchlistPage />}
                             />
                         </>
@@ -42,8 +42,8 @@ function App() {
                                 element={<Navigate to="/login" />}
                             />
                             <Route
-                                path="/favourites"
-                                element={<WatchlistPage to="login" />}
+                                path="/favorites"
+                                element={<Navigate to="/login" />}
                             />
                         </>
                     )}
