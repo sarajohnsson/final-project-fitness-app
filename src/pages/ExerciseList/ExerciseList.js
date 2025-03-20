@@ -38,6 +38,8 @@ export default function ExerciseList() {
         return favorites.some((favorite) => favorite.id === item.id);
     };
 
+    // Filter function
+
     // Function get random exercises
     function getRandomExercise(exercises, count) {
         const shuffled = [...exercises].sort(() => Math.random() - 0.5);
