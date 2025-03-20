@@ -2,7 +2,22 @@
 
 .workout-wrapper {
     margin: 0 auto;
-    padding-top: 120px;
+    padding: 120px 0;
+
+    .workout-title {
+        font-family: 'Poppins', sans-serif;
+        text-transform: capitalize;
+        font-size: 3rem;
+        font-weight: 700;
+        line-height: 1;
+        color: transparent;
+        -webkit-text-stroke: 1px $primary-white;
+        margin-bottom: 20px;
+
+        @media (max-width: 600px) {
+            font-size: 2rem;
+        }
+    }
 
     .add-workout {
         margin-bottom: 40px;

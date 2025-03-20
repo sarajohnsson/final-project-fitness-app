@@ -81,6 +81,7 @@ export default function ExerciseList() {
     return (
         <>
             <Container maxWidth="lg" className="exercise-wrapper">
+                <h2 className="exercise-list-title">Search the database</h2>
                 <label className="exercise-input-group">
                     <TextField
                         id="filled-size-small"

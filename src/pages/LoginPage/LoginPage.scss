@@ -1,18 +1,22 @@
 @import '../../sassStyles/global.scss';
 
 .login-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding-top: 120px;
-}
+    padding: 120px 0;
 
-.login-title {
-    font-family: 'Poppins', sans-serif;
-    font-size: 3rem;
-    font-weight: 700;
-    line-height: 1;
-    color: $primary-white;
-    margin-bottom: 10px;
+    .login-title {
+        font-family: 'Poppins', sans-serif;
+        text-transform: capitalize;
+        font-size: 3rem;
+        font-weight: 700;
+        line-height: 1;
+        color: transparent;
+        -webkit-text-stroke: 1px $primary-white;
+        margin-bottom: 10px;
+
+        @media (max-width: 600px) {
+            font-size: 2rem;
+        }
+    }
 }
 
 .login-text {

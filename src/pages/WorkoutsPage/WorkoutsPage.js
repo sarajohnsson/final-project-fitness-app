@@ -79,6 +79,7 @@ export default function WorkoutsPage() {
 
     return (
         <Container maxWidth="lg" className="workout-wrapper">
+            <h2 className="workout-title">Create custom workouts</h2>
             <Button
                 className="add-workout add-btn success lg"
                 title="Add workout"
