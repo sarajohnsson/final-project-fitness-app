@@ -3,7 +3,7 @@ import { signOut } from 'firebase/auth';
 import { auth } from '../firebase/config';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUser, selectUsers } from '../store/usersSlice';
-import logo from '../assets/Gym Logo.svg';
+import logo from '../assets/gymlogo.svg';
 import './Navbar.scss';
 import { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
