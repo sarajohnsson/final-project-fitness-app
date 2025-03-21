@@ -1,17 +1,6 @@
 @import '../../sassStyles/global.scss';
 
 // --- HERO SECTION ---
-
-// .hero-section {
-//     background-color: $primary-black;
-//     width: 100%;
-//     height: 100vh;
-//     background-image: url('../../assets/images/hero-img.jpg');
-//     background-repeat: no-repeat;
-//     background-size: contain;
-//     background-position: 100%;
-// }
-
 .hero-overlay {
     border-image-source: linear-gradient(
         rgba(0, 0, 0, 0) 25%,

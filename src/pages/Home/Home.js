@@ -92,7 +92,6 @@ export default function Home() {
                         <Swiper
                             className="my-swiper"
                             modules={[Pagination]}
-                            loop={true}
                             pagination={{
                                 clickable: true,
                                 dynamicBullets: true,
