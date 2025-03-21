@@ -1,7 +1,8 @@
 import { NavLink } from 'react-router-dom';
 import Card from '../../components/ui/Card';
 import './Home.scss';
-import backgroundImage from '../../assets/images/hero-section-bg.jpg';
+import heroImg from '../../assets/images/hero-img.jpg';
+import subsectionImg from '../../assets/images/hero-section-bg.jpg';
 import cardImg1 from '../../assets/images/hero-card-1.jpg';
 import cardImg2 from '../../assets/images/hero-card-2.jpg';
 import cardImg3 from '../../assets/images/hero-card-3.jpg';
@@ -42,7 +43,15 @@ export default function Home() {
 
     return (
         <>
-            <section className="hero-section hero-overlay">
+            <section
+                className="hero-section hero-overlay"
+                style={{
+                    backgroundColor: '#000',
+                    backgroundImage: `url(${heroImg})`,
+                    backgroundRepeat: 'no-repeat',
+                    backgroundSize: 'contain',
+                    backgroundPosition: '100%',
+                }}>
                 <Container maxWidth="lg" className="hero-container">
                     <Box
                         display="flex"
@@ -150,7 +159,7 @@ export default function Home() {
             <section
                 className="subsection subsection-overlay"
                 style={{
-                    backgroundImage: `url(${backgroundImage})`,
+                    backgroundImage: `url(${subsectionImg})`,
                     backgroundPosition: 'center',
                     backgroundSize: 'cover',
                     backgroundRepeat: 'no-repeat',
