@@ -18,6 +18,7 @@ export default function Card({
     children,
     to,
     useTilt = true,
+    loading = 'lazy',
 }) {
     const cardStyle = useBackgroundImage
         ? {
@@ -35,7 +36,7 @@ export default function Card({
                     className={imageClass}
                     src={image}
                     alt={title}
-                    loading="lazy"
+                    loading={loading}
                 />
             )}
 

@@ -14,7 +14,7 @@ import 'swiper/css/pagination';
 import { auth } from '../../firebase/config';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUser, selectUsers } from '../../store/usersSlice';
-import { useEffect } from 'react';
+import { lazy, useEffect } from 'react';
 
 export default function Home() {
     // User credentials
@@ -118,6 +118,7 @@ export default function Home() {
                                     overlayClass="banner-gradient"
                                     contentClass="banner-content"
                                     to="/exercisedatabase"
+                                    loading="lazy"
                                 />
                             </SwiperSlide>
                             <SwiperSlide>
@@ -133,6 +134,7 @@ export default function Home() {
                                     overlayClass="banner-gradient"
                                     contentClass="banner-content"
                                     to="/progress"
+                                    loading="lazy"
                                 />
                             </SwiperSlide>
                             <SwiperSlide>
@@ -148,6 +150,7 @@ export default function Home() {
                                     overlayClass="banner-gradient"
                                     contentClass="banner-content"
                                     to="/favourites"
+                                    loading="lazy"
                                 />
                             </SwiperSlide>
                         </Swiper>
