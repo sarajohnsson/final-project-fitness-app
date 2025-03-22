@@ -28,11 +28,12 @@ export default function Home() {
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged((user) => {
             if (user) {
-                const userData = {
-                    uid: user.uid,
-                    email: user.email,
-                };
-                dispatch(setUser(userData));
+                dispatch(
+                    setUser({
+                        uid: user.uid,
+                        email: user.email,
+                    })
+                );
             } else {
                 dispatch(setUser(null));
             }
@@ -100,6 +101,7 @@ export default function Home() {
                             speed={800}
                             slidesPerView={1}
                             spaceBetween={20}
+                            lazy={true}
                             breakpoints={{
                                 400: { slidesPerView: 1, spaceBetween: 20 },
                                 600: { slidesPerView: 2, spaceBetween: 30 },
