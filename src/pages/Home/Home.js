@@ -104,8 +104,7 @@ export default function Home() {
                                 400: { slidesPerView: 1, spaceBetween: 20 },
                                 600: { slidesPerView: 2, spaceBetween: 30 },
                                 900: { slidesPerView: 3, spaceBetween: 40 },
-                            }}
-                            onSlideChange={() => console.log('slide change')}>
+                            }}>
                             <SwiperSlide>
                                 <Card
                                     cardClass="banner-card"

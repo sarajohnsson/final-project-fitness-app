@@ -61,7 +61,6 @@ export default function ExerciseList() {
 
     const handleButtonClick = (exercise) => {
         openModal(exercise);
-        console.log('Button clicked, exercise:', exercise);
     };
 
     const handleSearch = () => {

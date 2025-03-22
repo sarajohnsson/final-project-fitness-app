@@ -20,8 +20,6 @@ export default function ExerciseModal({
     const setsCount = useWatch({ control, name: 'sets' }) || 1;
 
     const addExercise = async (data) => {
-        console.log('Form submitted with data:', data);
-
         if (!workoutId) {
             console.error('No workout ID provided');
             return;
@@ -39,7 +37,6 @@ export default function ExerciseModal({
             await updateDoc(workoutRef, {
                 exercises: arrayUnion(newExercise),
             });
-            console.log('Exercise added successfully!');
             refreshWorkouts();
             onClose();
             reset();

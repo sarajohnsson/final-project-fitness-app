@@ -73,7 +73,7 @@ export default function Navbar() {
                 })
                 .catch((error) => {
                     // An error happened.
-                    console.log(error);
+                    console.error('Could not sign out', error);
                 });
         }
     }

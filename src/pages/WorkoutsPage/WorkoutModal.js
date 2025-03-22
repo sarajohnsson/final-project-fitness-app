@@ -7,12 +7,7 @@ import { db } from '../../firebase/config';
 import { TextField } from '@mui/material';
 
 export default function WorkoutsModal({ isOpen, onClose, refreshWorkouts }) {
-    const {
-        register,
-        handleSubmit,
-        reset,
-        formState: { errors },
-    } = useForm({
+    const { register, handleSubmit, reset } = useForm({
         mode: 'onChange',
     });
 
@@ -29,7 +24,6 @@ export default function WorkoutsModal({ isOpen, onClose, refreshWorkouts }) {
         try {
             const workoutRef = collection(db, 'workouts');
             await addDoc(workoutRef, newWorkout);
-            console.log('Workout added successfully!');
             refreshWorkouts();
             onClose();
             reset();

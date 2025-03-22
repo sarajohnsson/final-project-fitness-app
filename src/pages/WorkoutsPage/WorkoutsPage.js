@@ -7,7 +7,6 @@ import {
     getDoc,
     deleteDoc,
     updateDoc,
-    arrayUnion,
 } from 'firebase/firestore';
 import { db } from '../../firebase/config';
 import { useEffect, useState } from 'react';
