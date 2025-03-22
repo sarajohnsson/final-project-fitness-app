@@ -70,6 +70,10 @@ body {
     }
 }
 
+.filter-container {
+    margin-bottom: 20px;
+}
+
 .exercise-container {
     justify-content: center;
     align-items: stretch;
@@ -312,7 +316,8 @@ body {
 }
 
 // --- MUI ---
-.exercise-input .MuiInputLabel-root {
+.exercise-input .MuiInputLabel-root,
+.equipment-dropdown .MuiInputLabel-root {
     color: $brand-orange;
 }
 
@@ -320,7 +325,8 @@ body {
     color: $brand-orange;
 }
 
-.exercise-input .MuiInputBase-input {
+.exercise-input .MuiInputBase-input,
+.equipment-dropdown .MuiInputBase-input {
     width: 100%;
     color: $primary-white;
 }
@@ -338,4 +344,8 @@ body {
     border-bottom-left-radius: 10px;
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
+}
+
+.equipment-dropdown .MuiFormHelperText-root {
+    color: $primary-white;
 }

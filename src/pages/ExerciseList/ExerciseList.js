@@ -11,7 +11,7 @@ import './ExerciseList.scss';
 import Modal, { useModal } from '../../components/ui/Modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDumbbell, faHeart } from '@fortawesome/free-solid-svg-icons';
-import { Container, Grid2, TextField } from '@mui/material';
+import { Container, Grid2, TextField, MenuItem } from '@mui/material';
 
 export default function ExerciseList() {
     const url = '/data/exercises.json';
@@ -20,6 +20,7 @@ export default function ExerciseList() {
     const [limit, setLimit] = useState(10);
     const [filteredExercises, setFilteredExercises] = useState([]);
     const [randomExercises, setRandomExercises] = useState([]);
+    const [selectedEquipment, setSelectedEquipment] = useState('');
     const { data, loading, error } = UseFetch(url);
 
     // Favorite exercise function
@@ -38,13 +39,70 @@ export default function ExerciseList() {
         return favorites.some((favorite) => favorite.id === item.id);
     };
 
-    // Filter function
-
     // Function get random exercises
     function getRandomExercise(exercises, count) {
         const shuffled = [...exercises].sort(() => Math.random() - 0.5);
-        return shuffled.slice(0, count);
+        return shuffled
+            .slice(0, count)
+            .filter((exercise) => exercise.name && exercise.equipment);
     }
+
+    // Filter
+    const equipmentOptions = [
+        { value: '', label: 'All Equipment' },
+        { value: 'dumbbell', label: 'Dumbbell' },
+        { value: 'barbell', label: 'Barbell' },
+        { value: 'kettlebells', label: 'Kettlebells' },
+        { value: 'machine', label: 'Machine' },
+        { value: 'cable', label: 'Cable' },
+        { value: 'body only', label: 'Body Only' },
+        { value: 'bands', label: 'Bands' },
+    ];
+
+    const handleButtonClick = (exercise) => {
+        openModal(exercise);
+        console.log('Button clicked, exercise:', exercise);
+    };
+
+    const handleSearch = () => {
+        if (searchInput.trim() === '') {
+            setFilteredExercises(randomExercises);
+        } else {
+            const filtered = data.filter(
+                (exercise) =>
+                    exercise.name &&
+                    exercise.name
+                        .toLowerCase()
+                        .includes(searchInput.toLowerCase())
+            );
+            setFilteredExercises(filtered);
+        }
+    };
+
+    const handleEquipmentChange = (value) => {
+        setSelectedEquipment(value);
+
+        let filtered = data;
+
+        if (searchInput.trim() !== '') {
+            filtered = filtered.filter(
+                (exercise) =>
+                    exercise.name &&
+                    exercise.name
+                        .toLowerCase()
+                        .includes(searchInput.toLowerCase())
+            );
+        }
+
+        if (value) {
+            filtered = filtered.filter(
+                (exercise) =>
+                    exercise.equipment && exercise.equipment.includes(value)
+            );
+        }
+
+        setFilteredExercises(filtered);
+    };
 
     useEffect(() => {
         if (data.length > 0) {
@@ -54,11 +112,6 @@ export default function ExerciseList() {
         }
     }, [data]);
 
-    const handleButtonClick = (exercise) => {
-        openModal(exercise);
-        console.log('Button clicked, exercise:', exercise);
-    };
-
     if (error) {
         return (
             <div>
@@ -66,19 +119,6 @@ export default function ExerciseList() {
             </div>
         );
     }
-
-    const handleSearch = () => {
-        if (searchInput.trim() === '') {
-            setFilteredExercises(randomExercises);
-        } else {
-            const filtered = data.filter((exercise) =>
-                exercise.name
-                    .toLowerCase()
-                    .includes(searchInput.toLocaleLowerCase())
-            );
-            setFilteredExercises(filtered);
-        }
-    };
 
     return (
         <>
@@ -106,9 +146,28 @@ export default function ExerciseList() {
                     </Button>
                 </label>
 
+                <div className="filter-container">
+                    <TextField
+                        className="equipment-dropdown"
+                        id="outlined-select-equipment"
+                        select
+                        label="Select Equipment"
+                        variant="outlined"
+                        value={selectedEquipment}
+                        onChange={(e) => handleEquipmentChange(e.target.value)}
+                        helperText="Please select equipment">
+                        {equipmentOptions.map((option) => (
+                            <MenuItem key={option.value} value={option.value}>
+                                {option.label}
+                            </MenuItem>
+                        ))}
+                    </TextField>
+                </div>
+
                 {loading && <p>Loading...</p>}
                 <Grid2 container spacing={3} className="exercise-container">
                     {filteredExercises.slice(0, limit).map((exercise) => (
+                        // EXERCISE CARDS
                         <Card
                             cardClass="exercise-card"
                             key={exercise.id}
