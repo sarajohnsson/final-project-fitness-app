@@ -11,19 +11,26 @@ import './ExerciseList.scss';
 import Modal, { useModal } from '../../components/ui/Modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDumbbell, faHeart } from '@fortawesome/free-solid-svg-icons';
-import { Container, Grid2, TextField, MenuItem } from '@mui/material';
+import {
+    Container,
+    Grid2,
+    TextField,
+    MenuItem,
+    FormControl,
+    FormLabel,
+    RadioGroup,
+    FormControlLabel,
+    Radio,
+} from '@mui/material';
 
 export default function ExerciseList() {
     const url = '/data/exercises.json';
     const [searchInput, setSearchInput] = useState('');
-    const { isOpen, content, openModal, closeModal } = useModal();
     const [limit, setLimit] = useState(10);
-    const [filteredExercises, setFilteredExercises] = useState([]);
-    const [randomExercises, setRandomExercises] = useState([]);
-    const [selectedEquipment, setSelectedEquipment] = useState('');
+    const { isOpen, content, openModal, closeModal } = useModal();
     const { data, loading, error } = UseFetch(url);
 
-    // Favorite exercise function
+    // --- FAVORITE EXERCISES ---
     const dispatch = useDispatch();
     const favorites = useSelector((state) => state.watchlist.favorites);
 
@@ -39,7 +46,9 @@ export default function ExerciseList() {
         return favorites.some((favorite) => favorite.id === item.id);
     };
 
-    // Function get random exercises
+    // --- GET RANDOM EXERCISES ---
+    const [randomExercises, setRandomExercises] = useState([]);
+
     function getRandomExercise(exercises, count) {
         const shuffled = [...exercises].sort(() => Math.random() - 0.5);
         return shuffled
@@ -47,9 +56,18 @@ export default function ExerciseList() {
             .filter((exercise) => exercise.name && exercise.equipment);
     }
 
-    // Filter
+    // --- EXERCISE MODAL ---
+    const handleButtonClick = (exercise) => {
+        openModal(exercise);
+    };
+
+    // --- OPTIONS & RADIO FILTER ---
+    const [filteredExercises, setFilteredExercises] = useState([]);
+    const [selectedEquipment, setSelectedEquipment] = useState('');
+    const [selectedLevel, setSelectedLevel] = useState(null);
+
     const equipmentOptions = [
-        { value: '', label: 'All Equipment' },
+        { value: '', label: 'All Equipments' },
         { value: 'dumbbell', label: 'Dumbbell' },
         { value: 'barbell', label: 'Barbell' },
         { value: 'kettlebells', label: 'Kettlebells' },
@@ -59,27 +77,9 @@ export default function ExerciseList() {
         { value: 'bands', label: 'Bands' },
     ];
 
-    const handleButtonClick = (exercise) => {
-        openModal(exercise);
-    };
-
-    const handleSearch = () => {
-        if (searchInput.trim() === '') {
-            setFilteredExercises(randomExercises);
-        } else {
-            const filtered = data.filter(
-                (exercise) =>
-                    exercise.name &&
-                    exercise.name
-                        .toLowerCase()
-                        .includes(searchInput.toLowerCase())
-            );
-            setFilteredExercises(filtered);
-        }
-    };
-
-    const handleEquipmentChange = (value) => {
-        setSelectedEquipment(value);
+    const handleFilterChange = (equipment, level) => {
+        setSelectedEquipment(equipment);
+        setSelectedLevel(level);
 
         let filtered = data;
 
@@ -93,14 +93,44 @@ export default function ExerciseList() {
             );
         }
 
-        if (value) {
+        if (equipment) {
             filtered = filtered.filter(
                 (exercise) =>
-                    exercise.equipment && exercise.equipment.includes(value)
+                    exercise.equipment && exercise.equipment.includes(equipment)
+            );
+        }
+
+        if (level && level !== 'all') {
+            filtered = filtered.filter(
+                (exercise) =>
+                    exercise.level && exercise.level.toLowerCase() === level
             );
         }
 
         setFilteredExercises(filtered);
+    };
+
+    const handleLevelChange = (e) => {
+        const level = e.target.value;
+        handleFilterChange(selectedEquipment, level);
+    };
+
+    const shouldShowFilter = filteredExercises.length > 0;
+
+    // --- SEARCH HANDLER ---
+    const handleSearch = () => {
+        if (searchInput.trim() === '') {
+            setFilteredExercises(randomExercises);
+        } else {
+            const filtered = data.filter(
+                (exercise) =>
+                    exercise.name &&
+                    exercise.name
+                        .toLowerCase()
+                        .includes(searchInput.toLowerCase())
+            );
+            setFilteredExercises(filtered);
+        }
     };
 
     useEffect(() => {
@@ -145,23 +175,61 @@ export default function ExerciseList() {
                     </Button>
                 </label>
 
-                <div className="filter-container">
-                    <TextField
-                        className="equipment-dropdown"
-                        id="outlined-select-equipment"
-                        select
-                        label="Select Equipment"
-                        variant="outlined"
-                        value={selectedEquipment}
-                        onChange={(e) => handleEquipmentChange(e.target.value)}
-                        helperText="Please select equipment">
-                        {equipmentOptions.map((option) => (
-                            <MenuItem key={option.value} value={option.value}>
-                                {option.label}
-                            </MenuItem>
-                        ))}
-                    </TextField>
-                </div>
+                {shouldShowFilter && (
+                    <div className="filter-container">
+                        <FormControl>
+                            <RadioGroup
+                                className="exercise-lvl-control"
+                                row
+                                aria-labelledby="exercise-level-group"
+                                name="row-radio-buttons-group"
+                                value={selectedLevel}
+                                onChange={handleLevelChange}>
+                                <p className="exercise-lvl-title">
+                                    Exercise level:{' '}
+                                </p>
+                                <FormControlLabel
+                                    value="all"
+                                    control={<Radio />}
+                                    label="All"
+                                />
+                                <FormControlLabel
+                                    value="beginner"
+                                    control={<Radio />}
+                                    label="Beginner"
+                                />
+                                <FormControlLabel
+                                    value="intermediate"
+                                    control={<Radio />}
+                                    label="Intermediate"
+                                />
+                                <FormControlLabel
+                                    value="expert"
+                                    control={<Radio />}
+                                    label="Expert"
+                                />
+                            </RadioGroup>
+                        </FormControl>
+
+                        <TextField
+                            className="equipment-dropdown"
+                            id="outlined-select-equipment"
+                            select
+                            label="Select Equipment"
+                            variant="outlined"
+                            value={selectedEquipment}
+                            onChange={(e) => handleFilterChange(e.target.value)}
+                            helperText="Please select equipment">
+                            {equipmentOptions.map((option) => (
+                                <MenuItem
+                                    key={option.value}
+                                    value={option.value}>
+                                    {option.label}
+                                </MenuItem>
+                            ))}
+                        </TextField>
+                    </div>
+                )}
 
                 {loading && <p>Loading...</p>}
                 <Grid2 container spacing={3} className="exercise-container">
