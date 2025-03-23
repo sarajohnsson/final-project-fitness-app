@@ -1,0 +1,363 @@
+{
+  "5-day-split": {
+    "day1": [
+      {
+        "name": "Deadlift",
+        "sets": 4,
+        "reps": 6
+      },
+      {
+        "name": "Lat Pull Down",
+        "sets": 4,
+        "reps": "8-12"
+      }
+    ],
+    "day2": [
+      {
+        "name": "Incline Bench Press",
+        "sets": 4,
+        "reps": 6
+      },
+      {
+        "name": "Decline Bench Press",
+        "sets": 4,
+        "reps": "8-12"
+      }
+    ],
+    "day3": [
+      {
+        "name": "Barbell Hack Squat",
+        "sets": 5,
+        "reps": 6
+      },
+      {
+        "name": "Romanian Deadlift",
+        "sets": 4,
+        "reps": "8-12"
+      }
+    ],
+    "day4": [
+      {
+        "name": "Military Press",
+        "sets": 4,
+        "reps": 6
+      },
+      {
+        "name": "Lateral Raise",
+        "sets": 4,
+        "reps": "8-12"
+      }
+    ],
+    "day5": [
+      {
+        "name": "EZ Bar Curl",
+        "sets": 4,
+        "reps": "8-12"
+      },
+      {
+        "name": "EZ Bar Skullcrusher",
+        "sets": 4,
+        "reps": "8-12"
+      }
+    ]
+  },
+  "push-pull-legs": {
+    "day1": [
+      {
+        "name": "Overhead Press",
+        "sets": 5,
+        "reps": 5
+      },
+      {
+        "name": "Dumbbell Bench Press",
+        "sets": 3,
+        "reps": 5
+      },
+      {
+        "name": "Triceps Dip",
+        "sets": 3,
+        "reps": 8
+      },
+      {
+        "name": "Lateral Raise",
+        "sets": 3,
+        "reps": 8
+      },
+      {
+        "name": "Lying Dumbbell Extension",
+        "sets": 3,
+        "reps": 8
+      },
+      {
+        "name": "Triceps Pushdown",
+        "sets": 3,
+        "reps": 8
+      }
+    ],
+    "day2": [
+      {
+        "name": "Pull Down",
+        "sets": 4,
+        "reps": 5
+      },
+      {
+        "name": "Ben Over Barbell Row",
+        "sets": 5,
+        "reps": 5
+      },
+      {
+        "name": "T-Bar Row",
+        "sets": 3,
+        "reps": 8
+      },
+      {
+        "name": "Dumbbell Shrug",
+        "sets": 3,
+        "reps": 8
+      },
+      {
+        "name": "Preacher Curl",
+        "sets": 3,
+        "reps": 8
+      },
+      {
+        "name": "Hammer Curl",
+        "sets": 3,
+        "reps": 8
+      }
+    ],
+    "day3": [
+      {
+        "name": "Barbell Squat",
+        "sets": 5,
+        "reps": 5
+      },
+      {
+        "name": "Deadlift",
+        "sets": 3,
+        "reps": 5
+      },
+      {
+        "name": "Leg Press",
+        "sets": 3,
+        "reps": 8
+      },
+      {
+        "name": "Lying Leg Curl",
+        "sets": 3,
+        "reps": 8
+      },
+      {
+        "name": "Leg Extension",
+        "sets": 3,
+        "reps": 8
+      },
+      {
+        "name": "Seated Calf Raise",
+        "sets": 3,
+        "reps": 8
+      }
+    ]
+  },
+  "full-body": {
+    "day1": [
+      {
+        "name": "Squat",
+        "sets": 4,
+        "reps": 6
+      },
+      {
+        "name": "Bench Press",
+        "sets": 4,
+        "reps": "8-12"
+      },
+      {
+        "name": "Deadlift",
+        "sets": 4,
+        "reps": 6
+      }
+    ],
+    "day2": [
+      {
+        "name": "Overhead Press",
+        "sets": 4,
+        "reps": "8-12"
+      },
+      {
+        "name": "Pull-Ups",
+        "sets": 4,
+        "reps": "8-12"
+      },
+      {
+        "name": "Dips",
+        "sets": 4,
+        "reps": "8-12"
+      }
+    ]
+  },
+  "upper-lower": {
+    "day1": [
+      {
+        "name": "Bench Press",
+        "sets": 3,
+        "reps": "6-12"
+      },
+      {
+        "name": "Barbell Row",
+        "sets": 3,
+        "reps": "8-12"
+      },
+      {
+        "name": "Seated Overhead Dumbbell Press",
+        "sets": 3,
+        "reps": "6-12"
+      },
+      {
+        "name": "V-Bar Lat Pull Down",
+        "sets": 2,
+        "reps": "8-12"
+      },
+      {
+        "name": "Side Lateral Raise",
+        "sets": 2,
+        "reps": "8-15"
+      },
+      {
+        "name": "Cable Triceps Extension",
+        "sets": 3,
+        "reps": "8-12"
+      },
+      {
+        "name": "Cable Curls",
+        "sets": 3,
+        "reps": "8-12"
+      }
+    ],
+    "day2": [
+      {
+        "name": "Squats",
+        "sets": 3,
+        "reps": "6-12"
+      },
+      {
+        "name": "Stiff Leg Deadlift",
+        "sets": 3,
+        "reps": "8-12"
+      },
+      {
+        "name": "Standing Calf Raise",
+        "sets": 3,
+        "reps": "8-15"
+      },
+      {
+        "name": "Leg Extension",
+        "sets": 2,
+        "reps": "8-12"
+      },
+      {
+        "name": "Leg Curl",
+        "sets": 2,
+        "reps": "8-12"
+      },
+      {
+        "name": "Seated Calf Raise",
+        "sets": 2,
+        "reps": "8-12"
+      },
+      {
+        "name": "Cable Crunch",
+        "sets": 3,
+        "reps": "8-12"
+      },
+      {
+        "name": "Cable Pull Through",
+        "sets": 3,
+        "reps": "8-12"
+      }
+    ],
+    "day3": [
+      {
+        "name": "Incline Dumbbell Bench Press",
+        "sets": 3,
+        "reps": "8-12"
+      },
+      {
+        "name": "Rack Deadlift",
+        "sets": 3,
+        "reps": "5-8"
+      },
+      {
+        "name": "Military Press",
+        "sets": 3,
+        "reps": "8-12"
+      },
+      {
+        "name": "Machine Chest Press",
+        "sets": 2,
+        "reps": "8-12"
+      },
+      {
+        "name": "Machine Rows",
+        "sets": 2,
+        "reps": "8-12"
+      },
+      {
+        "name": "Machine Shoulder Press",
+        "sets": 2,
+        "reps": "8-12"
+      },
+      {
+        "name": "Dumbbell Curls",
+        "sets": 3,
+        "reps": "8-12"
+      },
+      {
+        "name": "Machine Tricep Dip",
+        "sets": 3,
+        "reps": "8-12"
+      }
+    ],
+    "day4": [
+      {
+        "name": "Leg Press",
+        "sets": 3,
+        "reps": "10-20"
+      },
+      {
+        "name": "Dumbbell Stiff Lef Deadlift",
+        "sets": 3,
+        "reps": "8-12"
+      },
+      {
+        "name": "Lef Press Calf Raise",
+        "sets": 3,
+        "reps": "10-15"
+      },
+      {
+        "name": "Hack Squat",
+        "sets": 2,
+        "reps": "8-12"
+      },
+      {
+        "name": "Seated Leg Curl",
+        "sets": 2,
+        "reps": "10-12"
+      },
+      {
+        "name": "Seated Calf Raise",
+        "sets": 2,
+        "reps": "10-12"
+      },
+      {
+        "name": "Planks",
+        "sets": 3,
+        "reps": "60 sec"
+      },
+      {
+        "name": "Hyperextension",
+        "sets": 3,
+        "reps": "10-12"
+      }
+    ]
+  }
+}

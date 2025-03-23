@@ -118,7 +118,7 @@ export default function LoginPage() {
 
     return (
         <>
-            <section>
+            <section className="login-wrapper">
                 <Container maxWidth="lg" className="login-container">
                     <h2 className="login-title">Welcome to the Fitness App</h2>
                     <p className="login-text">

@@ -98,12 +98,21 @@
 
 .bottom-nav {
     background-color: $primary-black !important;
+    width: 100%;
     position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
     z-index: 1000;
     flex: 1;
+
+    @media (max-width: 480px) {
+        display: grid !important;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        padding: 10px 0;
+        height: fit-content !important;
+    }
 }
 
 .logo-container {

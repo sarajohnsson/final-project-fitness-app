@@ -9,6 +9,7 @@ import LoginPage from './pages/LoginPage/LoginPage';
 import WatchlistPage from './pages/WatchlistPage/WatchlistPage';
 import { selectUsers } from './store/usersSlice';
 import AboutPage from './pages/AboutPage/AboutPage';
+import ProgramsPage from './pages/ProgramsPage/ProgramsPage';
 
 function App() {
     const user = useSelector(selectUsers);
@@ -24,6 +25,7 @@ function App() {
                         path="/exercisedatabase"
                         element={<ExerciseList />}
                     />
+                    <Route path="/programs" element={<ProgramsPage />} />
                     <Route path="/about" element={<AboutPage />} />
                     {isLoggedIn ? (
                         <>

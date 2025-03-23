@@ -15,11 +15,13 @@ import {
     faDumbbell,
     faChartLine,
     faCircleInfo,
+    faClipboard,
 } from '@fortawesome/free-solid-svg-icons';
 import {
     BottomNavigation,
     BottomNavigationAction,
     Container,
+    Grid2,
     useMediaQuery,
     useTheme,
 } from '@mui/material';
@@ -125,13 +127,16 @@ export default function Navbar() {
                                 <NavLink
                                     className="nav-link"
                                     to="/exercisedatabase">
-                                    Exercises
+                                    Exercise Database
                                 </NavLink>
                                 <NavLink className="nav-link" to="/progress">
-                                    Progress
+                                    My Routines
+                                </NavLink>
+                                <NavLink className="nav-link" to="/programs">
+                                    Programs
                                 </NavLink>
                                 <NavLink className="nav-link" to="/favorites">
-                                    Favourites
+                                    Favorites
                                 </NavLink>
                                 <NavLink className="nav-link" to="/about">
                                     About
@@ -201,11 +206,27 @@ export default function Navbar() {
                                 }}
                             />
                             <BottomNavigationAction
-                                label="Progress"
+                                label="Routine"
                                 icon=<FontAwesomeIcon icon={faChartLine} />
                                 component={Link}
                                 to="/progress"
                                 value="/progress"
+                                sx={{
+                                    '&:not(.Mui-selected)': {
+                                        color: '#dee2e6',
+                                    },
+                                    '&.Mui-selected': {
+                                        color: '#fa6f19',
+                                    },
+                                    minWidth: 'auto',
+                                }}
+                            />
+                            <BottomNavigationAction
+                                label="Programs"
+                                icon=<FontAwesomeIcon icon={faClipboard} />
+                                component={Link}
+                                to="/programs"
+                                value="/programs"
                                 sx={{
                                     '&:not(.Mui-selected)': {
                                         color: '#dee2e6',
