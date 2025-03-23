@@ -11,7 +11,9 @@ import {
 import { useDispatch } from 'react-redux';
 import { setUser } from '../../store/usersSlice.js';
 import { useNavigate } from 'react-router-dom';
-import { Container } from '@mui/material';
+import { Alert, Container } from '@mui/material';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheck } from '@fortawesome/free-solid-svg-icons';
 
 export default function LoginPage() {
     const dispatch = useDispatch();
@@ -22,6 +24,7 @@ export default function LoginPage() {
         password: '',
     });
     const [error, setError] = useState('');
+    const [success, setSuccess] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -72,13 +75,13 @@ export default function LoginPage() {
             userCredentials.password
         )
             .then((userCredential) => {
-                // Navigate to homepage upon signup
                 if (true) {
-                    navigate('/');
+                    setSuccess(true);
                 }
             })
             .catch((error) => {
                 setError(error.message);
+                setSuccess(false);
             });
     }
 
@@ -91,15 +94,27 @@ export default function LoginPage() {
             userCredentials.password
         )
             .then((userCredential) => {
-                // Navigate to homepage upon login
                 if (true) {
-                    navigate('/');
+                    setSuccess(true);
                 }
             })
             .catch((error) => {
                 setError(error.message);
+                setSuccess(false);
             });
     }
+
+    useEffect(() => {
+        let timer;
+        if (success) {
+            timer = setTimeout(() => {
+                navigate('/');
+            }, 1000);
+        }
+        return () => {
+            clearTimeout(timer);
+        };
+    }, [success, navigate]);
 
     return (
         <>
@@ -174,6 +189,15 @@ export default function LoginPage() {
                         )}
 
                         {error && <div className="error">{error}</div>}
+                        {success && (
+                            <Alert
+                                icon={<FontAwesomeIcon icon={faCheck} />}
+                                severity="success">
+                                {loginType === 'login'
+                                    ? 'Login successful!'
+                                    : 'Signup successful!'}
+                            </Alert>
+                        )}
                     </form>
                 </Container>
             </section>
