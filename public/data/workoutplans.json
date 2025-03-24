@@ -273,35 +273,85 @@
     "day1": [
       {
         "name": "Squat",
-        "sets": 4,
-        "reps": 6
+        "sets": 5,
+        "reps": 5
       },
       {
         "name": "Bench Press",
-        "sets": 4,
-        "reps": "8-12"
+        "sets": 5,
+        "reps": 5
       },
       {
-        "name": "Deadlift",
-        "sets": 4,
-        "reps": 6
+        "name": "Barbell Row",
+        "sets": 5,
+        "reps": 5
+      },
+      {
+        "name": "Upright Row",
+        "sets": 3,
+        "reps": 10
+      },
+      {
+        "name": "Skullcrushers",
+        "sets": 3,
+        "reps": 10
+      },
+      {
+        "name": "Dumbbell Curls",
+        "sets": 3,
+        "reps": 10
+      },
+      {
+        "name": "Leg Curls",
+        "sets": 3,
+        "reps": "12-15"
+      },
+      {
+        "name": "Ab Wheel Roll Out",
+        "sets": 3,
+        "reps": "10-15"
       }
     ],
     "day2": [
       {
-        "name": "Overhead Press",
-        "sets": 4,
+        "name": "Deadlift",
+        "sets": 3,
+        "reps": 6
+      },
+      {
+        "name": "Romanian Deadlift",
+        "sets": 2,
         "reps": "8-12"
       },
       {
-        "name": "Pull-Ups",
-        "sets": 4,
-        "reps": "8-12"
+        "name": "Seated Overhead Press",
+        "sets": 3,
+        "reps": "8-10"
+      },
+      {
+        "name": "Pull Ups",
+        "sets": 3,
+        "reps": "10-15"
       },
       {
         "name": "Dips",
+        "sets": 3,
+        "reps": "10-20"
+      },
+      {
+        "name": "Barbell Shrugs",
+        "sets": 3,
+        "reps": 10
+      },
+      {
+        "name": "Seated Calf Raise",
         "sets": 4,
-        "reps": "8-12"
+        "reps": "12-15"
+      },
+      {
+        "name": "Planks",
+        "sets": 3,
+        "reps": "60 seconds"
       }
     ]
   },
