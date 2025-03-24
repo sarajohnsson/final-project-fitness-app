@@ -108,14 +108,13 @@
     z-index: 1000;
     flex: 1;
     height: auto !important;
-    padding-bottom: env(safe-area-inset-bottom);
+    padding: 10px 0;
 
     @media (max-width: 480px) {
         display: grid !important;
         grid-template-columns: repeat(3, 1fr);
         gap: 10px;
-        padding: 10px 0 calc(10px + env(safe-area-inset-bottom));
-        max-height: 80px !important;
+        max-height: 100px !important;
     }
 }
 
