@@ -127,16 +127,16 @@ export default function Navbar() {
                                 <NavLink
                                     className="nav-link"
                                     to="/exercisedatabase">
-                                    Exercise Database
+                                    Exercises
+                                </NavLink>
+                                <NavLink className="nav-link" to="/favorites">
+                                    Favorites
                                 </NavLink>
                                 <NavLink className="nav-link" to="/progress">
                                     My Routines
                                 </NavLink>
                                 <NavLink className="nav-link" to="/programs">
                                     Programs
-                                </NavLink>
-                                <NavLink className="nav-link" to="/favorites">
-                                    Favorites
                                 </NavLink>
                                 <NavLink className="nav-link" to="/about">
                                     About
@@ -206,7 +206,23 @@ export default function Navbar() {
                                 }}
                             />
                             <BottomNavigationAction
-                                label="Routine"
+                                label="Favorites"
+                                icon=<FontAwesomeIcon icon={faHeart} />
+                                component={Link}
+                                to="/favorites"
+                                value="/favorites"
+                                sx={{
+                                    '&:not(.Mui-selected)': {
+                                        color: '#dee2e6',
+                                    },
+                                    '&.Mui-selected': {
+                                        color: '#fa6f19',
+                                    },
+                                    minWidth: 'auto',
+                                }}
+                            />
+                            <BottomNavigationAction
+                                label="My Routines"
                                 icon=<FontAwesomeIcon icon={faChartLine} />
                                 component={Link}
                                 to="/progress"
@@ -237,22 +253,7 @@ export default function Navbar() {
                                     minWidth: 'auto',
                                 }}
                             />
-                            <BottomNavigationAction
-                                label="Favorites"
-                                icon=<FontAwesomeIcon icon={faHeart} />
-                                component={Link}
-                                to="/favorites"
-                                value="/favorites"
-                                sx={{
-                                    '&:not(.Mui-selected)': {
-                                        color: '#dee2e6',
-                                    },
-                                    '&.Mui-selected': {
-                                        color: '#fa6f19',
-                                    },
-                                    minWidth: 'auto',
-                                }}
-                            />
+
                             <BottomNavigationAction
                                 label="About"
                                 icon=<FontAwesomeIcon icon={faCircleInfo} />

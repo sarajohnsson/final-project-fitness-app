@@ -1,5 +1,5 @@
 {
-  "5-day-split": {
+  "5 Day Split": {
     "day1": [
       {
         "name": "Deadlift",
@@ -10,6 +10,26 @@
         "name": "Lat Pull Down",
         "sets": 4,
         "reps": "8-12"
+      },
+      {
+        "name": "Dumbbell Row",
+        "sets": 4,
+        "reps": "8-12"
+      },
+      {
+        "name": "Machine Row",
+        "sets": 4,
+        "reps": 10
+      },
+      {
+        "name": "One Arm Cable Row",
+        "sets": 3,
+        "reps": 12
+      },
+      {
+        "name": "Straight Arm Cable Pull Down",
+        "sets": 2,
+        "reps": 15
       }
     ],
     "day2": [
@@ -22,6 +42,31 @@
         "name": "Decline Bench Press",
         "sets": 4,
         "reps": "8-12"
+      },
+      {
+        "name": "Machine Bench Press",
+        "sets": 3,
+        "reps": "6-12"
+      },
+      {
+        "name": "Machine Fly",
+        "sets": 3,
+        "reps": "12-15"
+      },
+      {
+        "name": "Push Ups",
+        "sets": 3,
+        "reps": "Failure"
+      },
+      {
+        "name": "Machine Crunch",
+        "sets": 3,
+        "reps": 15
+      },
+      {
+        "name": "Hanging Leg Raise",
+        "sets": 3,
+        "reps": "12-15"
       }
     ],
     "day3": [
@@ -34,6 +79,26 @@
         "name": "Romanian Deadlift",
         "sets": 4,
         "reps": "8-12"
+      },
+      {
+        "name": "Leg Press",
+        "sets": 3,
+        "reps": "10-15"
+      },
+      {
+        "name": "Leg Curl",
+        "sets": 3,
+        "reps": "12-15"
+      },
+      {
+        "name": "Walking Lunge",
+        "sets": 3,
+        "reps": 15
+      },
+      {
+        "name": "Smith Machine Calf Raise",
+        "sets": 4,
+        "reps": 20
       }
     ],
     "day4": [
@@ -46,6 +111,31 @@
         "name": "Lateral Raise",
         "sets": 4,
         "reps": "8-12"
+      },
+      {
+        "name": "Reverse Machine Fly",
+        "sets": 4,
+        "reps": "8-12"
+      },
+      {
+        "name": "Machine Shoulder Press",
+        "sets": 3,
+        "reps": "6-10"
+      },
+      {
+        "name": "Barbell Shrugs",
+        "sets": 4,
+        "reps": 15
+      },
+      {
+        "name": "Decline Sit Up",
+        "sets": 3,
+        "reps": 15
+      },
+      {
+        "name": "Barbell Roll Out",
+        "sets": 3,
+        "reps": 12
       }
     ],
     "day5": [
@@ -58,10 +148,30 @@
         "name": "EZ Bar Skullcrusher",
         "sets": 4,
         "reps": "8-12"
+      },
+      {
+        "name": "Spider Curl",
+        "sets": 4,
+        "reps": "8-12"
+      },
+      {
+        "name": "Tricep Dip",
+        "sets": 4,
+        "reps": "8-12"
+      },
+      {
+        "name": "Cable Hammer Curl",
+        "sets": 4,
+        "reps": "8-12"
+      },
+      {
+        "name": "Cable Overhead Tricep Extension",
+        "sets": 4,
+        "reps": "8-12"
       }
     ]
   },
-  "push-pull-legs": {
+  "Push Pull Legs": {
     "day1": [
       {
         "name": "Overhead Press",
@@ -159,7 +269,7 @@
       }
     ]
   },
-  "full-body": {
+  "Full Body": {
     "day1": [
       {
         "name": "Squat",
@@ -195,7 +305,7 @@
       }
     ]
   },
-  "upper-lower": {
+  "Upper Lower": {
     "day1": [
       {
         "name": "Bench Press",

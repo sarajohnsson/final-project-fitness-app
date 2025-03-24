@@ -1,0 +1,46 @@
+@import '../../sassStyles/global';
+
+.programs-wrapper {
+    padding: 120px 0;
+
+    .programs-title {
+        font-family: 'Poppins', sans-serif;
+        text-transform: capitalize;
+        font-size: 3rem;
+        font-weight: 700;
+        line-height: 1;
+        color: transparent;
+        -webkit-text-stroke: 1px $primary-white;
+        margin-bottom: 20px;
+
+        @media (max-width: 600px) {
+            font-size: 2rem;
+        }
+    }
+}
+
+.workout-dropdown {
+    color: $primary-white !important;
+    margin-bottom: 20px;
+}
+
+.selected-workout-title {
+    font-size: 2rem !important;
+    font-weight: 600 !important;
+    color: $primary-white;
+
+    @media (max-width: 600px) {
+        font-size: 1.5rem !important;
+    }
+}
+
+.programs-label {
+    color: $brand-orange !important;
+}
+
+.program-chip.MuiChip-root {
+    background-color: $brand-orange !important;
+    color: $primary-black !important;
+    font-weight: 700;
+    margin-right: 15px;
+}
